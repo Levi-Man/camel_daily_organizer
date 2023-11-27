@@ -29,7 +29,7 @@ Join us on your personalized journey with Camel, where each hump becomes a miles
 
 As a busy individual
 I WANT to be able to organize and structure my tasks
-SO THAT i can maximize my time and productivity 
+SO THAT I can maximize my time and productivity 
 
 GIVEN a dashboard of widgets 
 
@@ -51,6 +51,8 @@ THEN I will be able to hit save and have everything saved to local storage
 ## Wireframes
 
 Below is a screenshot of a simple wireframe for us to follow.
+
+![Wireframe](https://github.com/Levi-Man/camel_daily_organizer/blob/main/Camel%20Wireframe.pdf)
 
 ## API's to be used
 
