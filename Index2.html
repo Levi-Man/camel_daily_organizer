@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Camel</title>
     <link rel="stylesheet" href="./assets/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-  </head>
+
+</head>
 
 
 
-  <body>
+<body>
     <div class="header_img"></div>
 
 
@@ -24,14 +26,16 @@
             <!-- quote generator -->
             <div class="tile is-parent is-8">
                 <div class="tile is-child notification is-success has-background-grey-darker">
-                    <p class="title is-5 has-text-white-bis">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    <p class="subtitle is-6 has-text-white-bis">- Quote author</p>
-                    <button class="button is-warning is-outlined">Generate New Quote</button>
+                    <p id="quote-text" class="title is-5 has-text-white-bis">Lorem ipsum dolor sit amet, consectetur
+                        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <p id="author-name" class="subtitle is-6 has-text-white-bis">- Quote author</p>
+                    <button id="new-random" class="button is-warning is-outlined">Generate New Quote</button>
                 </div>
             </div>
             <!-- time and day widget -->
             <div class="tile is-parent is-2">
-                <div class="tile is-child notification is-success has-background-grey-darker has-text-centered is-align-content-center">
+                <div
+                    class="tile is-child notification is-success has-background-grey-darker has-text-centered is-align-content-center">
                     <p id="time" class="is-size-1 is-size-1-touch has-text-weight-bold has-text-white-bis ">11:35</p>
                     <p id="day" class="has-text-white-bis">Wednesday</p>
                     <p id="monthly" class="has-text-white-bis">November 29, 2023</p>
@@ -39,8 +43,10 @@
             </div>
             <!-- waether widget -->
             <div class="tile is-parent is-2">
-                <div class="tile is-child notification is-success  has-background-grey-darker has-text-centered is-align-content-center">
-                    <p id="temperature" class="is-size-1 is-size-1-touch has-text-weight-bold has-text-white-bis">11°C</p>
+                <div
+                    class="tile is-child notification is-success  has-background-grey-darker has-text-centered is-align-content-center">
+                    <p id="temperature" class="is-size-1 is-size-1-touch has-text-weight-bold has-text-white-bis">11°C
+                    </p>
                     <p id="range" class="has-text-white-bis">H:14 | L:4</p>
                     <p id="city" class="has-text-white-bis">Toronto</p>
                 </div>
@@ -51,48 +57,51 @@
             <!-- journal -->
             <div class="tile is-parent">
                 <article class="tile is-child has-background-grey-darker notification is-success">
-                  <div class="content">
-                      <!-- titles -->
-                    <p class="title">Daily Journal</p>
-                    <p class="subtitle">🌊 Setting up my day for success</p>
-                      <!-- boxes -->
                     <div class="content">
-                      <div>
-                          <!-- Top box -->
-                          <p class="title is-6 has-text-weight-normal is-italic	">3 things I am greatful for</p>
-                          <div class="box content pt-2 has-background-grey-dark">
-                              <ol type="1">
-                                  <li>Coffee</li>
-                                  <li>Tea</li>
-                                  <li>Milk</li>
-                              </ol>
-                          </div>
-                          <!-- Bottom Box -->
-                          <p class="title is-6 has-text-weight-normal is-italic	">3 goals for today</p>
-                          <div class="box content pt-2 has-background-grey-dark">
-                              <ol type="1">
-                                  <li>Study</li>
-                                  <li>Workout</li>
-                                  <li>Get 8h of sleep</li>
-                              </ol>
-                          </div>
-                      </div>
+                        <!-- titles -->
+                        <p class="title">Daily Journal</p>
+                        <p class="subtitle">🌊 Setting up my day for success</p>
+                        <!-- boxes -->
+                        <div class="content">
+                            <div>
+                                <!-- Top box -->
+                                <p class="title is-6 has-text-weight-normal is-italic	">3 things I am greatful for</p>
+                                <div class="box content pt-2 has-background-grey-dark">
+                                    <ol type="1">
+                                        <li>Coffee</li>
+                                        <li>Tea</li>
+                                        <li>Milk</li>
+                                    </ol>
+                                </div>
+                                <!-- Bottom Box -->
+                                <p class="title is-6 has-text-weight-normal is-italic	">3 goals for today</p>
+                                <div class="box content pt-2 has-background-grey-dark">
+                                    <ol type="1">
+                                        <li>Study</li>
+                                        <li>Workout</li>
+                                        <li>Get 8h of sleep</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="button is-warning is-outlined">Log My Journal</button>
                     </div>
-                    <button class="button is-warning is-outlined">Log My Journal</button>
-                  </div>
                 </article>
             </div>
-            
+
             <!-- solo image tile -->
             <div class="tile is-parent">
                 <article class="tile is-child has-background-grey-darker notification is-primary has-text-centered">
                     <p class="title">Next Major Purchase</p>
                     <p class="subtitle">With with the help of a software dev salary...</p>
                     <div class="">
-                        <figure class="image has-ratio">
+                        
                             <img src="./images/pexels-auto-records-10292240.jpg">
                         </figure>
                     </div>
+                    <button id="change-image" class="js-modal-trigger" data-target="pexel-modal">
+                        Change Image
+                      </button>
                 </article>
             </div>
 
@@ -112,13 +121,18 @@
                         </div>
                     </div>
                     <div class="control my-4">
-                            <ul>
-                                <li class="notification is-warning mb-3 p-2">Practice more Javascript<button class="delete"></button></li>
-                                <li class="notification is-warning mb-3 p-2">Get 8h of sleep<button class="delete"></button></li>
-                                <li class="notification is-warning mb-3 p-2">Get 8h of sleep<button class="delete"></button></li>
-                                <li class="notification is-warning mb-3 p-2">Get 8h of sleep<button class="delete"></button></li>
-                                <li class="notification is-warning mb-3 p-2">Get 8h of sleep<button class="delete"></button></li>
-                            </ul>
+                        <ul>
+                            <li class="notification is-warning mb-3 p-2">Practice more Javascript<button
+                                    class="delete"></button></li>
+                            <li class="notification is-warning mb-3 p-2">Get 8h of sleep<button class="delete"></button>
+                            </li>
+                            <li class="notification is-warning mb-3 p-2">Get 8h of sleep<button class="delete"></button>
+                            </li>
+                            <li class="notification is-warning mb-3 p-2">Get 8h of sleep<button class="delete"></button>
+                            </li>
+                            <li class="notification is-warning mb-3 p-2">Get 8h of sleep<button class="delete"></button>
+                            </li>
+                        </ul>
                     </div>
                     <div class="field is-grouped is-grouped-centered">
                         <p class="control">
@@ -131,7 +145,7 @@
                                 Clear List
                             </a>
                         </p>
-                      </div>
+                    </div>
                 </article>
             </div>
         </div>
@@ -182,8 +196,40 @@
                 </div>
             </div>
         </div>
+       
+       <!-- Modal -->
+        <div id="pexel-modal" class="modal">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+                <!-- Any other Bulma elements you want -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-8">
+                            <form>
+                                <label for="pexelimg">imgsrch</label>
+                                <input type="text" id="pexelimg" name="imgsrch"><br><br>
+
+                                <input id="submitBtn" type="submit" value="Submit">
+                            </form>
+
+                            <div id="imgcontainer">
+
+                            </div>
+
+                            <p>Click the "Submit" button to start button.</p>
+                            mood board
+                        </div>
+                        <div class="col-4">
+                            social links or other links
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="modal-close is-large" aria-label="close"></button>
+        </div>
     </main>
 
     <script src="./assets/script.js"></script>
-  </body>
+</body>
+
 </html>
