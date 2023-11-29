@@ -1,105 +1,232 @@
-<!doctype html>
-<html lang="en">
-  <head>
+<!DOCTYPE html>
+<html>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Camel</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/style.css">
-  </head>
+    <!-- Bulma CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <!-- dayJS -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+        integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
+        crossorigin="anonymous"
+    ></script>
+</head>
 
-  
 
-  <body>
-    <!-- banner image API -->
 
-    <!-- Daily quote API -->
-    <div class="container">
-        <div class="row">
-            <div class="col">
-              <p id="quote-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-              <p id="author-name"> - Quote author</p>
-              <button id="new-random">New Quote</button>
+<body>
+    <div class="header_img"></div>
+
+
+    <main class="section has-background-black-ter">
+        <div class="px-3 mb-6">
+            <div class="title is-1">🍃</div>
+            <div class="title is-1 has-text-white-bis">My Personal Home</div>
+            <div class="button is-primary">Edit Page</div>
+        </div>
+        <!-- row 1 -->
+        <div class="tile is-ancestor ">
+            <!-- quote generator -->
+            <div class="tile is-parent is-8">
+                <div class="tile is-child notification is-success has-background-grey-darker">
+                    <p id="quote-text" class="title is-5 has-text-white-bis">Lorem ipsum dolor sit amet, consectetur
+                        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <p id="author-name" class="subtitle is-6 has-text-white-bis">- Quote author</p>
+                    <button id="new-random" class="button is-warning is-outlined">Generate New Quote</button>
+                </div>
+            </div>
+           <!-- time and day widget -->
+           <div class="tile is-parent is-2">
+                <div class="tile is-child notification is-success has-background-grey-darker has-text-centered is-align-content-center">
+                    <p id="time" class="is-size-1 is-size-1-touch has-text-weight-bold has-text-white-bis "></p>
+                    <p id="day" class="has-text-white-bis"></p>
+                    <p id="monthly" class="has-text-white-bis"></p>
+                </div>
+            </div>
+            <!-- waether widget -->
+            <div class="tile is-parent is-2">
+                <div
+                    class="tile is-child notification is-success  has-background-grey-darker has-text-centered is-align-content-center">
+                    <p id="temperature" class="is-size-1 is-size-1-touch has-text-weight-bold has-text-white-bis">11°C
+                    </p>
+                    <p id="range" class="has-text-white-bis">H:14 | L:4</p>
+                    <p id="city" class="has-text-white-bis">Toronto</p>
+                </div>
             </div>
         </div>
-    </div>
+        <!-- row 2  -->
+        <div class="tile is-ancestor has-background-black-ter">
+            <!-- journal -->
+            <div class="tile is-parent">
+                <article class="tile is-child has-background-grey-darker notification is-success">
+                    <div class="content">
+                        <!-- titles -->
+                        <p class="title">Daily Journal</p>
+                        <p class="subtitle">🌊 Setting up my day for success</p>
+                        <!-- boxes -->
+                        <div class="content">
+                            <div>
+                                <!-- Top box -->
+                                <p class="title is-6 has-text-weight-normal is-italic	">3 things I am greatful for</p>
+                                <div class="box content pt-2 has-background-grey-dark">
+                                    <ol type="1">
+                                        <li>Coffee</li>
+                                        <li>Tea</li>
+                                        <li>Milk</li>
+                                    </ol>
+                                </div>
+                                <!-- Bottom Box -->
+                                <p class="title is-6 has-text-weight-normal is-italic	">3 goals for today</p>
+                                <div class="box content pt-2 has-background-grey-dark">
+                                    <ol type="1">
+                                        <li>Study</li>
+                                        <li>Workout</li>
+                                        <li>Get 8h of sleep</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="button is-warning is-outlined">Log My Journal</button>
+                    </div>
+                </article>
+            </div>
 
-    <!-- second section -->
-    <div class="container">
-        <div class="row">
-            <!-- could put gmail api here and move daily journal beside mood board -->
-          <div class="col">
-            <h4>Daily Journal</h4>
-            <h5>Three things I'm grateful for</h5>
-            <h5>What I achieved today</h5>
-            <h5>What I couldnt achieve today</h5>
-            <h5>What I am looking forward to for tomorrow</h5>
-          </div>
-          <div class="col">
-            <h4>Timer</h4>
-            <h4>Weather</h4>
-            <p>temperature</p>
-            <p>Forecast</p>
-          </div>
-          <div class="col">
-            <h4>whole Calendar</h4>
-          </div>
-        </div>
-    </div>
+            <!-- solo image tile -->
+            <div class="tile is-parent">
+                <article class="tile is-child has-background-grey-darker notification is-primary has-text-centered">
+                    <p class="title">Next Major Purchase</p>
+                    <p class="subtitle">With with the help of a software dev salary...</p>
+                    <div class="">
+                        
+                            <img src="./images/pexels-auto-records-10292240.jpg">
+                        </figure>
+                    </div>
+                    <button id="change-image" class="js-modal-trigger" data-target="pexel-modal">
+                        Change Image
+                      </button>
+                </article>
+            </div>
 
-    <!-- Kanban board -->
-    <div class="container">
-        <div class="row">
-            <div class="col">
-              <p class="text-center">Kanban board</p>
+            <!-- to-do-list -->
+            <div class="tile is-parent">
+                <article class="tile is-child has-background-grey-darker notification is-primary ">
+                    <p class="title">Daily To Do List</p>
+                    <p class="subtitle">Keep track of what's done and ongoing</p>
+                    <div class="field has-addons">
+                        <div class="control is-expanded">
+                            <input id="task_input" class="input" type="text" placeholder="Today I need to...">
+                        </div>
+                        <div class="control">
+                            <a id="task_add" class="button is-warning">
+                                Add
+                            </a>
+                        </div>
+                    </div>
+                    <div class="control my-4">
+                        <ul id="task_list">
+                            <li class="is-clickable notification is-warning mb-3 p-2">Practice more Javascript<button id="clear_task" class="delete"></button></li>
+                        </ul>
+                    </div>
+                    <div class="field is-grouped is-grouped-centered">
+                        <p class="control">
+                            <a class="button is-warning">
+                                Save Progress
+                            </a>
+                        </p>
+                        <p class="control">
+                            <a class="button is-warning is-outlined">
+                                Clear List
+                            </a>
+                        </p>
+                    </div>
+                </article>
             </div>
         </div>
-    </div>
-
-    <!-- Finance Trakcer -->
-    <div class="container">
-        <div class="row">
-            <div class="col">
-              Fiance Trakcer
+        <!-- row 3 -->
+        <div class="tile is-ancestor is-vertical">
+            <div class="tile is-parent">
+                <div class="tile is-child">
+                    <figure class="image is-480x480">
+                        <img src="./images/pexels-auto-records-10292240.jpg">
+                    </figure>
+                </div>
+                <div class="tile is-child">
+                    <figure class="image is-480x480">
+                        <img src="./images/pexels-auto-records-10292240.jpg">
+                    </figure>
+                </div>
+                <div class="tile is-child">
+                    <figure class="image is-480x480">
+                        <img src="./images/pexels-auto-records-10292240.jpg">
+                    </figure>
+                </div>
+                <div class="tile is-child">
+                    <figure class="image is-480x480">
+                        <img src="./images/pexels-auto-records-10292240.jpg">
+                    </figure>
+                </div>
+            </div>
+            <div class="tile is-parent">
+                <div class="tile is-child">
+                    <figure class="image has-ratio is-256x256">
+                        <img src="./images/pexels-auto-records-10292240.jpg">
+                    </figure>
+                </div>
+                <div class="tile is-child">
+                    <figure class="image has-ratio is-256x256">
+                        <img src="./images/pexels-auto-records-10292240.jpg">
+                    </figure>
+                </div>
+                <div class="tile is-child">
+                    <figure class="image has-ratio is-256x256">
+                        <img src="./images/pexels-auto-records-10292240.jpg">
+                    </figure>
+                </div>
+                <div class="tile is-child">
+                    <figure class="image has-ratio is-256x256">
+                        <img src="./images/pexels-auto-records-10292240.jpg">
+                    </figure>
+                </div>
             </div>
         </div>
-    </div>
+       
+       <!-- Modal -->
+        <div id="pexel-modal" class="modal">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+                <!-- Any other Bulma elements you want -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-8">
+                            <form>
+                                <label for="pexelimg">imgsrch</label>
+                                <input type="text" id="pexelimg" name="imgsrch"><br><br>
 
-    <!-- mood board / img grid -->
+                                <input id="submitBtn" type="submit" value="Submit">
+                            </form>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-8">
-              <form>
-                <label for="pexelimg">imgsrch</label>
-                <input type="text" id="pexelimg" name="imgsrch"><br><br>
-                
-                <input id="submitBtn" type="submit" value="Submit">
-              </form>
+                            <div id="imgcontainer">
 
-              <div id="imgcontainer"> 
+                            </div>
 
-              </div>
-              
-              <p>Click the "Submit" button to start button.</p>
-                mood board
+                            <p>Click the "Submit" button to start button.</p>
+                            mood board
+                        </div>
+                        <div class="col-4">
+                            social links or other links
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-4">
-                social links or other links
-            </div>
+            <button class="modal-close is-large" aria-label="close"></button>
         </div>
-    </div>
+    </main>
 
-
-
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="./assets/script.js"></script>
-  </body>
-
+</body>
 
 </html>
