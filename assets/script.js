@@ -1,9 +1,11 @@
 let quoteContainer = document.getElementById("quote-text");
 let authorContainer = document.getElementById("author-name")
 let newRandom = document.getElementById('new-random');
-newRandom.addEventListener('click', randomQuote);
+let loadQuote = localStorage.getItem("quote");
+let loadAuthor = localStorage.getItem("author");
 
-randomQuote();
+quoteContainer.textContent = loadQuote;
+authorContainer.textContent = loadAuthor;
 
 function randomQuote() {
   fetch("https://type.fit/api/quotes")
@@ -18,6 +20,9 @@ function randomQuote() {
       let myArray = ranAuthor.split(",");
       quoteContainer.textContent = ranQuote;
       authorContainer.textContent = myArray[0];
+      localStorage.setItem("quote", ranQuote);
+      localStorage.setItem("author", myArray[0]);
     });
 }
 
+newRandom.addEventListener('click', randomQuote);
