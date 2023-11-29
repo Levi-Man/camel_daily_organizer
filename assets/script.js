@@ -117,3 +117,42 @@ function randomQuote() {
 }
 
 newRandom.addEventListener('click', randomQuote);
+
+
+// clock widget
+
+let time = document.getElementById('time')
+let day = document.getElementById('day')
+let monthYear = document.getElementById('monthly')
+
+function getTime(params) {
+  let timeCalc = dayjs().format('HH:mm');
+  time.textContent = timeCalc;
+}
+
+function getDay(params) {
+  let dayCalc = dayjs().format("dddd");
+  day.textContent = dayCalc;
+}
+
+function getMonthYear(params) {
+  let monthYearCalc = dayjs().format('MMM D, YYYY');
+  monthYear.textContent = monthYearCalc;
+}
+
+getTime();
+getDay();
+getMonthYear();
+
+// to do list
+let taskList = document.getElementById("task_list")
+let addButton = document.getElementById("task_add")
+let clearButton = document.getElementById("clear_task")
+
+// add new list item
+
+function newTask(params) {
+  let li = document.createElement("li");
+  let inputValue = document.getElementById("task_input").value;
+  let listText = 
+}
