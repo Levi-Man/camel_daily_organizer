@@ -2,3 +2,12 @@
     border: 1px red solid;
     font-family: 'Source Sans 3', sans-serif;
 }
+
+.img_container {
+    /* background-image: url(./images/199286248_l_normal_none.png); */
+    background-color: rgb(241, 241, 111);
+    max-height: 50em;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
