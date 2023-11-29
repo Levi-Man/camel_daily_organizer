@@ -2,9 +2,13 @@
 apiKey = 'le2A6ZGlRehlD4SAz7n3jYlKeXWLWCLnwTzKHbxu6JLZXV8ItBJEtfXV';
 const submit = document.getElementById("submitBtn")
 const imgContainer = document.getElementById("imgcontainer")
+let soloImage = document.getElementById("solo-image");
 
+let dataImage = localStorage.getItem("imgData");
+console.log(dataImage);
+soloImage.src = dataImage
 
-
+//modal for pexel search
 document.addEventListener('DOMContentLoaded', () => {
   // Functions to open and close a modal
   function openModal($el) {
@@ -58,7 +62,7 @@ function getImg(e) {
 
   const apiUrl = 'https://api.pexels.com/v1/search?query=' + searchstring + '&per_page=8';
   console.log(searchstring);
-  console.log(apiURL);
+  // console.log(apiURL);
   fetch(apiUrl, {
     headers: {
       Authorization: apiKey
@@ -75,10 +79,33 @@ function getImg(e) {
       imgContainer.innerHTML = ""
       for (let photo of photos) {
         const img = document.createElement("img")
-        img.src = photo.src.medium
+        img.src = photo.src.tiny
         img.alt = photo.alt
         imgContainer.appendChild(img)
-      }
+        
+        //click to add photo to solo-image on main page
+        img.addEventListener("click", changeImage)
+
+        function changeImage(e) {
+          console.log(e.target);
+          soloImage.src=photo.src.medium;
+          console.log(soloImage.src);
+
+          //save image to local storage as base64
+          // imgData = convertBase64(soloImage);
+          localStorage.setItem("imgData", photo.src.medium);
+
+          // function convertBase64(img) {
+          //   let canvas = document.createElement("canvas");
+          //   canvas.width = img.width;
+          //   canvas.height = img.height;
+          //   let ctx = canvas.getContext("2d");
+          //   ctx.drawImage(img, 0, 0);
+          //   let dataURL = canvas.toDataURL("image/png");
+          //   return dataURL.replace(/^data:image\/(png|jpg);base64,/,"");
+          // }
+        }
+       }
 
     })
     .catch(error => {
@@ -151,8 +178,8 @@ let clearButton = document.getElementById("clear_task")
 
 // add new list item
 
-function newTask(params) {
-  let li = document.createElement("li");
-  let inputValue = document.getElementById("task_input").value;
-  let listText = 
-}
+// function newTask(params) {
+//   let li = document.createElement("li");
+//   let inputValue = document.getElementById("task_input").value;
+//   let listText = 
+// }
