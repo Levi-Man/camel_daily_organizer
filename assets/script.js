@@ -1,18 +1,36 @@
 // Pexel API
 apiKey = 'le2A6ZGlRehlD4SAz7n3jYlKeXWLWCLnwTzKHbxu6JLZXV8ItBJEtfXV';
-const submit = document.getElementById("submitBtn")
-const imgContainer = document.getElementById("imgcontainer")
+const submit = document.getElementById("submitBtn");
+const submitBanner = document.getElementById("submitBtnBanner");
+const imgContainer = document.getElementById("imgcontainer");
+const bannerContainer = document.getElementById("bannercontainer");
 let soloImage = document.getElementById("solo-image");
+let bannerImage = document.getElementById("top-banner-image");
 
 let dataImage = localStorage.getItem("imgData");
 console.log(dataImage);
-soloImage.src = dataImage
+soloImage.src = dataImage;
 
-//modal for pexel search
+let dataImageBanner = localStorage.getItem("imgDataBanner");
+console.log(dataImage);
+bannerImage.src = dataImageBanner
+
+//Check if there is stored data in local storage
+if (localStorage.getItem("imgData") === null) {
+  soloImage.src = "./images/pexels-auto-records-10292240.jpg";
+}
+
+if (localStorage.getItem("imgDataBanner") === null) {
+  bannerImage.src = "./images/199286248_l_normal_none.png";
+}
+
+
+//modal for pexel search from BULMA
 document.addEventListener('DOMContentLoaded', () => {
   // Functions to open and close a modal
   function openModal($el) {
     $el.classList.add('is-active');
+    // console.log($el);
   }
 
   function closeModal($el) {
@@ -52,15 +70,17 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-submit.addEventListener("click", getImg)
+submit.addEventListener("click", getImg);
+submitBanner.addEventListener("click", getImgBanner);
 
+// SOLO IMAGE MODAL SEARCH from BULMA
 function getImg(e) {
   e.preventDefault();
 
   const searchstring = document.getElementById("pexelimg").value
   if (searchstring === "") return;
 
-  const apiUrl = 'https://api.pexels.com/v1/search?query=' + searchstring + '&per_page=8';
+  const apiUrl = 'https://api.pexels.com/v1/search?query=' + searchstring + '&per_page=20';
   console.log(searchstring);
   // console.log(apiURL);
   fetch(apiUrl, {
@@ -113,6 +133,58 @@ function getImg(e) {
       console.error('Error fetching data:', error);
     });
 }
+
+// BANNER MODAL SEARCH
+function getImgBanner(e) {
+  e.preventDefault();
+console.log("banner search");
+  const searchstring = document.getElementById("pexelimgBanner").value
+  if (searchstring === "") return;
+
+  const apiUrl = 'https://api.pexels.com/v1/search?query=' + searchstring + '&per_page=20';
+  console.log(searchstring);
+  console.log(apiUrl);
+  fetch(apiUrl, {
+    headers: {
+      Authorization: apiKey
+    }
+  })
+    .then(response => response.json())
+    .then(data => {
+      // Process the data returned from the API
+      console.log(data)
+
+      const per_page = data.per_page
+      const photos = data.photos
+
+      bannerContainer.innerHTML = ""
+      for (let photo of photos) {
+        const img = document.createElement("img")
+        img.src = photo.src.tiny
+        img.alt = photo.alt
+        bannerContainer.appendChild(img)
+        
+        //click to add photo to solo-image on main page
+        img.addEventListener("click", changeImage)
+
+        function changeImage(e) {
+          console.log(e.target);
+          bannerImage.src=photo.src.landscape;
+          console.log(soloImage.src);
+
+          //save image to local storage as base64
+          // imgData = convertBase64(soloImage);
+          localStorage.setItem("imgDataBanner", photo.src.landscape);
+
+         }
+       }
+
+    })
+    .catch(error => {
+
+      console.error('Error fetching data:', error);
+    });
+  }
 
 // Quote API
   
