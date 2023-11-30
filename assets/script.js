@@ -234,6 +234,7 @@ function randomQuote() {
 newRandom.addEventListener('click', randomQuote);
 
 
+
 // clock widget
 
 function loadTime() {
@@ -265,66 +266,108 @@ loadTime();
 setInterval(loadTime, 1000);
 
 
+// // weather widget
+// apikey
+let weatherApiKey = '2fcc36041962140cb847a44a37c1797b';
+
+let temperatureDisplay = document.getElementById('temperature')
+let conditionDisplay = document.getElementById('condition')
+let locationDisplay = document.getElementById('location')
+let citySearch = document.getElementById('citysearch')
+
+
+navigator.geolocation.getCurrentPosition(getLatLon);
+
+function getLatLon(position) {
+  let latitude = position.coords.latitude;
+  let longitude = position.coords.longitude;
+    console.log("Latitude is "+latitude);
+    console.log("Longitude is "+longitude);
+
+    fetch('https://api.openweathermap.org/data/2.5/weather?lat='+latitude+'&lon='+longitude+'&units=metric&appid='+weatherApiKey+'')
+
+    .then(function (response) {
+      return response.json();
+    })
+
+    .then(function (current) {
+      console.log(current)
+      
+      console.log(current.name)
+      let locationValue = current.name;
+      let temperatureValue = current.main.temp;
+      // let conditionValue = current.weather.0.description;
+
+    
+
+      locationDisplay.textContent = locationValue;
+      temperatureDisplay.innerHTML = temperatureValue;
+      // conditionDisplay.innerHTML = conditionValue;
+    })
+}
+
+
+
 //journal widget
 
-function initMyJournal() {
-  var storedMyJournal = JSON.parse(localStorage.getItem("myJournal"));
-  if (storedMyJournal !== null && (storedMyJournal.greatfull.length > 0 || storedMyJournal.goals.length > 0)) {
-    myJournal = storedMyJournal;
-  }
-  renderMyJournal();
-}
+// function initMyJournal() {
+//   var storedMyJournal = JSON.parse(localStorage.getItem("myJournal"));
+//   if (storedMyJournal !== null && (storedMyJournal.greatfull.length > 0 || storedMyJournal.goals.length > 0)) {
+//     myJournal = storedMyJournal;
+//   }
+//   renderMyJournal();
+// }
 
-function storeMyJournal() {
-  localStorage.setItem("myJournal", JSON.stringify(myJournal));
-}
+// function storeMyJournal() {
+//   localStorage.setItem("myJournal", JSON.stringify(myJournal));
+// }
 
-function renderMyJournal() {
-  greatfull1.value = myJournal.greatfull[0] || "";
-  greatfull2.value = myJournal.greatfull[1] || "";
-  greatfull3.value = myJournal.greatfull[2] || "";
-  goalsl1.value = myJournal.goals[0] || "";
-  goalsl2.value = myJournal.goals[1] || "";
-  goalsl3.value = myJournal.goals[2] || "";
-}
+// function renderMyJournal() {
+//   greatfull1.value = myJournal.greatfull[0] || "";
+//   greatfull2.value = myJournal.greatfull[1] || "";
+//   greatfull3.value = myJournal.greatfull[2] || "";
+//   goalsl1.value = myJournal.goals[0] || "";
+//   goalsl2.value = myJournal.goals[1] || "";
+//   goalsl3.value = myJournal.goals[2] || "";
+// }
 
-journalForm.addEventListener("submit", function (event) {
-  event.preventDefault();
+// journalForm.addEventListener("submit", function (event) {
+//   event.preventDefault();
 
-  myJournal.greatfull.push(greatfull1.value);
-  myJournal.greatfull.push(greatfull2.value);
-  myJournal.greatfull.push(greatfull3.value);
-  myJournal.goals.push(goalsl1.value);
-  myJournal.goals.push(goalsl2.value);
-  myJournal.goals.push(goalsl3.value);
-  storeMyJournal();
-  renderMyJournal();
-});
+//   myJournal.greatfull.push(greatfull1.value);
+//   myJournal.greatfull.push(greatfull2.value);
+//   myJournal.greatfull.push(greatfull3.value);
+//   myJournal.goals.push(goalsl1.value);
+//   myJournal.goals.push(goalsl2.value);
+//   myJournal.goals.push(goalsl3.value);
+//   storeMyJournal();
+//   renderMyJournal();
+// });
 
-function myJournalSubmit(triggerEvent) {
-    myJournal.greatfull[0] = greatfull1.value;
-    myJournal.greatfull[1] = greatfull2.value;
-    myJournal.greatfull[2] = greatfull3.value;
-    myJournal.goals[0] = goalsl1.value;
-    myJournal.goals[1] = goalsl2.value;
-    myJournal.goals[2] = goalsl3.value;
-    storeMyJournal();
-    renderMyJournal();
-};
+// function myJournalSubmit(triggerEvent) {
+//     myJournal.greatfull[0] = greatfull1.value;
+//     myJournal.greatfull[1] = greatfull2.value;
+//     myJournal.greatfull[2] = greatfull3.value;
+//     myJournal.goals[0] = goalsl1.value;
+//     myJournal.goals[1] = goalsl2.value;
+//     myJournal.goals[2] = goalsl3.value;
+//     storeMyJournal();
+//     renderMyJournal();
+// };
 
-journalForm.addEventListener("submit", function(event){
-  event.preventDefault();
-  myJournalSubmit(event);
-});
+// journalForm.addEventListener("submit", function(event){
+//   event.preventDefault();
+//   myJournalSubmit(event);
+// });
 
-journalForm.addEventListener("keydown", function(event){
-  if(event.code == "Enter") {
-    event.preventDefault();
-    myJournalSubmit(event);
-  } 
-});
+// journalForm.addEventListener("keydown", function(event){
+//   if(event.code == "Enter") {
+//     event.preventDefault();
+//     myJournalSubmit(event);
+//   } 
+// });
 
-initMyJournal();
+// initMyJournal();
 
 
 // To Do List
