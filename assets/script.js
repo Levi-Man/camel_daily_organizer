@@ -185,6 +185,7 @@ let clearButton = document.getElementById('clear_button')
 
 let tasks = []
 
+// renders the task
 function renderTasks() {
   taskList.innerHTML = "";
   for (let i = 0; i < tasks.length; i++) {
@@ -200,6 +201,7 @@ function renderTasks() {
   }
 }
 
+// loads the task
 function loadTasks() {
   // Get tasks from localStorage
   var taskStorage = JSON.parse(localStorage.getItem("tasks"));
@@ -210,10 +212,12 @@ function loadTasks() {
   renderTasks();
 }
 
+// save the tasks
 function saveTasks() {
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
+// submits tasks 
 addButton.addEventListener("click", function(event) {
   event.preventDefault();
   var taskText = taskInput.value.trim();
@@ -226,6 +230,7 @@ addButton.addEventListener("click", function(event) {
   loadTasks();
 });
 
+// adds tasks to list
 taskList.addEventListener("click", function(event) {
   var element = event.target;
   if (element.matches("button") === true) {
@@ -236,7 +241,11 @@ taskList.addEventListener("click", function(event) {
   }
 });
 
+// clears local storage
 clearButton.addEventListener('click', function () {
   localStorage.removeItem('tasks');
   taskList.innerHTML="";
 })
+
+loadTasks();
+renderTasks();
