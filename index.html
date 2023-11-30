@@ -19,9 +19,9 @@
 
     <div id="top-banner" class="img_container has-background-black-ter">
         <img id="top-banner-image" class="banner_img" src="./images/199286248_l_normal_none.png" alt="">
-        <button id="change-image" class="js-modal-trigger is-warning is-small" data-target="banner-modal">
+        <button id="change-image" class="button cvrbtn js-modal-trigger is-warning is-small" data-target="banner-modal">
             Change Image
-          </button>
+        </button>
     </div>
 
     <main class="section has-background-black-ter">
@@ -34,9 +34,8 @@
             <!-- quote generator -->
             <div class="tile is-parent is-6">
                 <div class="tile is-child notification is-success has-background-grey-darker">
-                    <p id="quote-text" class="title is-5 has-text-white-bis">Lorem ipsum dolor sit amet, consectetur
-                        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    <p id="author-name" class="subtitle is-6 has-text-white-bis">- Quote author</p>
+                    <p id="quote-text" class="title is-5 has-text-white-bis">"If you sprinkle when you tinkle, be sweet and wipe the seat."</p>
+                    <p id="author-name" class="subtitle is-6 has-text-white-bis">- Wise Man</p>
                     <button id="new-random" class="button is-warning">Generate New Quote</button>
                 </div>
             </div>
@@ -78,6 +77,8 @@
             <div class="tile is-parent">
                 <!-- <form id="journal-form"> -->
                     <article class="tile is-child has-background-grey-darker notification is-success">
+                <form id="journal-form">
+                    <article class="tile is-child has-background-grey-darker notification is-primary is-success">
                         <div class="content">
                             <!-- titles -->
                             <p class="title">Daily Journal</p>
@@ -90,6 +91,7 @@
                                     </p>
                                     <div class="box content pt-2 has-background-grey-dark">
                                         <ol type="1">
+
                                             <li>
                                                 <input class="input" type="text" placeholder="Text input">
                                             </li>
@@ -99,15 +101,18 @@
                                             <li>
                                                 <input class="input" type="text" placeholder="Text input">
                                             </li>
+                                            <li><input type="text" id="greatfull1"></li>
+                                            <li><input type="text" id="greatfull2"></li>
+                                            <li><input type="text" id="greatfull3"></li>
                                         </ol>
                                     </div>
                                     <!-- Bottom Box -->
                                     <p class="title is-6 has-text-weight-normal is-italic	">3 goals for today</p>
                                     <div class="box content pt-2 has-background-grey-dark">
                                         <ol type="1">
-                                            <li><input type= "text" id= "goalsl1"></li>
-                                            <li><input type= "text" id= "goalsl2"></li>
-                                            <li><input type= "text" id= "goalsl3"></li>
+                                            <li><input type="text" id="goalsl1"></li>
+                                            <li><input type="text" id="goalsl2"></li>
+                                            <li><input type="text" id="goalsl3"></li>
                                         </ol>
                                     </div>
                                 </div>
@@ -125,10 +130,7 @@
                     <p class="subtitle">With with the help of a software dev salary...</p>
                     <div class="">
 
-
-                        <img src="./images/pexels-auto-records-10292240.jpg">
-                        
-                            <img id="solo-image" src="./images/pexels-auto-records-10292240.jpg">
+                        <img id="solo-image" src="./images/pexels-auto-records-10292240.jpg">
 
                         </figure>
                     </div>
@@ -223,61 +225,58 @@
 
         <!-- Modal -->
 
-       
-       <!-- Modal for solo image -->
+
+        <!-- Modal for solo image -->
         <div id="pexel-modal" class="modal">
             <div class="modal-background "></div>
-                <div class="modal-content is-clipped">
-                    <div class="tile is-ancestor has-background-grey-darker notification is-primary">
-                        <div class="tile is-parent">
-                            <div class="tile is-child">
-                                <div class="label is-size-5 has-text-white-ter has-text-centered py-4">Find the best free stock photos</div>
-                                <div class="field is-grouped pb-4">
-                                    <p class="control is-expanded">
+            <div class="modal-content">
+                <div class="tile is-ancestor has-background-grey-darker notification is-primary p-4">
+                    <div class="tile is-parent">
+                        <div class="tile is-child">
+                            <div class="label is-size-5 has-text-white-ter has-text-centered py-4">Find the best free
+                                stock photos</div>
+                            <div class="field is-grouped pb-4">
+                                <p class="control is-expanded">
                                     <input id="pexelimg" class="input" type="text" placeholder="Search for an image...">
-                                    </p>
-                                    <p class="control">
-                                    <input id="submitBtn" class="button is-link" type="submit" value="search">
-                                    </p>
-                                </div>
-                                <div id="imgcontainer" class="img_result  pb-4"></div>
+                                </p>
+                                <p class="control is-expanded">
+                                    <input id="submitBtn" class="button  is-link" type="submit" value="search">
+                                </p>
                             </div>
+                            <div id="imgcontainer" class="img_result  pb-4"></div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
 
         <!-- Modal for top banner -->
         <div id="banner-modal" class="modal">
             <div class="modal-background"></div>
             <div class="modal-content">
-              <!-- Any other Bulma elements you want -->
-              <div class="container">
-                <div class="row">
-                    <div class="col-8">
-                        <form>
-                            <label for="pexelimgBanner">imgsrch</label>
-                            <input type="text" id="pexelimgBanner" name="imgsrch"><br><br>
-
-                            <input id="submitBtnBanner" type="submit" value="Submit">
-                        </form>
-
-                        <div id="bannercontainer">
-
+                <div class="tile is-ancestor has-background-grey-darker notification is-primary p-4">
+                    <div class="tile is-parent">
+                        <div class="tile is-child">
+                            <div class="label is-size-5 has-text-white-ter has-text-centered py-4">Find the best free
+                                stock photos</div>
+                            <div class="field is-grouped pb-4">
+                                <p class="control is-expanded">
+                                    <input id="pexelimgBanner" class="input" type="text"
+                                        placeholder="Search for an image...">
+                                </p>
+                                <p class="control is-expanded">
+                                    <input id="submitBtnBanner" class="button  is-link" type="submit" value="search">
+                                </p>
+                            </div>
+                            <div id="bannercontainer" class="img_result  pb-4">
+                            </div>
                         </div>
-
-                        <p>Click the "Submit" button to start button.</p>
-                        mood board
-                    </div>
-                    <div class="col-4">
-                        social links or other links
                     </div>
                 </div>
             </div>
-            </div>
             <button class="modal-close is-large" aria-label="close"></button>
-          </div>
+        </div>
     </main>
 
     <script src="./assets/script.js"></script>

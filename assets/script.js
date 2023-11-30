@@ -118,13 +118,13 @@ function getImg(e) {
         img.src = photo.src.tiny
         img.alt = photo.alt
         imgContainer.appendChild(img)
-        
+
         //click to add photo to solo-image on main page
         img.addEventListener("click", changeImage)
 
         function changeImage(e) {
           console.log(e.target);
-          soloImage.src=photo.src.medium;
+          soloImage.src = photo.src.medium;
           console.log(soloImage.src);
 
           //save image to local storage as base64
@@ -141,7 +141,7 @@ function getImg(e) {
           //   return dataURL.replace(/^data:image\/(png|jpg);base64,/,"");
           // }
         }
-       }
+      }
 
     })
     .catch(error => {
@@ -153,7 +153,7 @@ function getImg(e) {
 // BANNER MODAL SEARCH
 function getImgBanner(e) {
   e.preventDefault();
-console.log("banner search");
+  console.log("banner search");
   const searchstring = document.getElementById("pexelimgBanner").value
   if (searchstring === "") return;
 
@@ -179,28 +179,28 @@ console.log("banner search");
         img.src = photo.src.tiny
         img.alt = photo.alt
         bannerContainer.appendChild(img)
-        
+
         //click to add photo to solo-image on main page
         img.addEventListener("click", changeImage)
 
         function changeImage(e) {
           console.log(e.target);
-          bannerImage.src=photo.src.landscape;
+          bannerImage.src = photo.src.landscape;
           console.log(soloImage.src);
 
           //save image to local storage as base64
           // imgData = convertBase64(soloImage);
           localStorage.setItem("imgDataBanner", photo.src.landscape);
 
-         }
-       }
+        }
+      }
 
     })
     .catch(error => {
 
       console.error('Error fetching data:', error);
     });
-  }
+}
 
 // Quote API
 
@@ -210,8 +210,13 @@ let newRandom = document.getElementById('new-random');
 let loadQuote = localStorage.getItem("quote");
 let loadAuthor = localStorage.getItem("author");
 
-quoteContainer.textContent = loadQuote;
-authorContainer.textContent = loadAuthor;
+//check if there is a quote in localStorage
+if (localStorage.getItem("quote") === null) {
+
+} else {
+  quoteContainer.textContent = loadQuote;
+  authorContainer.textContent = loadAuthor;
+}
 
 function randomQuote() {
   fetch("https://type.fit/api/quotes")
@@ -309,6 +314,28 @@ function getLatLon(position) {
 
 
 //journal widget
+function myJournalSubmit(triggerEvent) {
+  myJournal.greatfull[0] = greatfull1.value;
+  myJournal.greatfull[1] = greatfull2.value;
+  myJournal.greatfull[2] = greatfull3.value;
+  myJournal.goals[0] = goalsl1.value;
+  myJournal.goals[1] = goalsl2.value;
+  myJournal.goals[2] = goalsl3.value;
+  storeMyJournal();
+  renderMyJournal();
+};
+
+journalForm.addEventListener("submit", function (event) {
+  event.preventDefault();
+  myJournalSubmit(event);
+});
+
+journalForm.addEventListener("keydown", function (event) {
+  if (event.code == "Enter") {
+    event.preventDefault();
+    myJournalSubmit(event);
+  }
+});
 
 // function initMyJournal() {
 //   var storedMyJournal = JSON.parse(localStorage.getItem("myJournal"));
@@ -412,7 +439,7 @@ function saveTasks() {
 }
 
 // submits tasks 
-addButton.addEventListener("click", function(event) {
+addButton.addEventListener("click", function (event) {
   event.preventDefault();
   var taskText = taskInput.value.trim();
   if (taskText === "") {
@@ -424,7 +451,7 @@ addButton.addEventListener("click", function(event) {
   loadTasks();
 });
 
-taskList.addEventListener("click", function(event) {
+taskList.addEventListener("click", function (event) {
   var element = event.target;
   if (element.matches("button") === true) {
     var index = element.parentElement.getAttribute("data-index");
@@ -437,7 +464,7 @@ taskList.addEventListener("click", function(event) {
 // clears local storage
 clearButton.addEventListener('click', function () {
   localStorage.removeItem('tasks');
-  taskList.innerHTML="";
+  taskList.innerHTML = "";
 })
 
 loadTasks();
