@@ -16,14 +16,18 @@
 
 
 <body>
-    <div class="header_img"></div>
 
+    <div id="top-banner" class="img_container has-background-black-ter">
+        <img id="top-banner-image" class="banner_img" src="./images/199286248_l_normal_none.png" alt="">
+        <button id="change-image" class="js-modal-trigger is-warning is-small" data-target="banner-modal">
+            Change Image
+          </button>
+    </div>
 
     <main class="section has-background-black-ter">
-        <div class="px-3 mb-6">
-            <div class="title is-1">🍃</div>
-            <div class="title is-1 has-text-white-bis">My Personal Home</div>
-            <div class="button is-primary">Edit Page</div>
+        <div class=" mb-6">
+            <div class="title is-1 has-text-white-bis">🍃 My Personal Home</div>
+            <!-- <div class="button is-primary">Edit Page</div> -->
         </div>
         <!-- row 1 -->
         <div class="tile is-ancestor ">
@@ -33,7 +37,7 @@
                     <p id="quote-text" class="title is-5 has-text-white-bis">Lorem ipsum dolor sit amet, consectetur
                         adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                     <p id="author-name" class="subtitle is-6 has-text-white-bis">- Quote author</p>
-                    <button id="new-random" class="button is-warning is-outlined">Generate New Quote</button>
+                    <button id="new-random" class="button is-warning">Generate New Quote</button>
                 </div>
             </div>
             <!-- time and day widget -->
@@ -104,7 +108,11 @@
                     <p class="subtitle">With with the help of a software dev salary...</p>
                     <div class="">
 
+
                         <img src="./images/pexels-auto-records-10292240.jpg">
+                        
+                            <img id="solo-image" src="./images/pexels-auto-records-10292240.jpg">
+
                         </figure>
                     </div>
                     <button id="change-image" class="js-modal-trigger" data-target="pexel-modal">
@@ -120,7 +128,7 @@
                     <p class="subtitle">Keep track of what's done and ongoing</p>
                     <div class="field has-addons">
                         <div class="control is-expanded">
-                            <input id="task_input" class="input" type="text" placeholder="Today I need to...">
+                            <input id="task_input" class="input" type="text" placeholder="Add items to the list">
                         </div>
                         <div class="control">
                             <a id="task_add" class="button is-warning">
@@ -129,19 +137,17 @@
                         </div>
                     </div>
                     <div class="control my-4">
+
                         <ul id="task_list">
                             <li class="is-clickable notification is-warning mb-3 p-2">Practice more Javascript<button
                                     id="clear_task" class="delete"></button></li>
                         </ul>
+
+                        <ul id="task_list"></ul>
                     </div>
                     <div class="field is-grouped is-grouped-centered">
                         <p class="control">
-                            <a class="button is-warning">
-                                Save Progress
-                            </a>
-                        </p>
-                        <p class="control">
-                            <a class="button is-warning is-outlined">
+                            <a id="clear_button" class="button is-warning is-outlined">
                                 Clear List
                             </a>
                         </p>
@@ -197,7 +203,11 @@
             </div>
         </div>
 
+
         <!-- Modal -->
+
+       
+       <!-- Modal for solo image -->
         <div id="pexel-modal" class="modal">
             <div class="modal-background"></div>
             <div class="modal-content">
@@ -227,6 +237,37 @@
             </div>
             <button class="modal-close is-large" aria-label="close"></button>
         </div>
+
+        <!-- Modal for top banner -->
+        <div id="banner-modal" class="modal">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+              <!-- Any other Bulma elements you want -->
+              <div class="container">
+                <div class="row">
+                    <div class="col-8">
+                        <form>
+                            <label for="pexelimgBanner">imgsrch</label>
+                            <input type="text" id="pexelimgBanner" name="imgsrch"><br><br>
+
+                            <input id="submitBtnBanner" type="submit" value="Submit">
+                        </form>
+
+                        <div id="bannercontainer">
+
+                        </div>
+
+                        <p>Click the "Submit" button to start button.</p>
+                        mood board
+                    </div>
+                    <div class="col-4">
+                        social links or other links
+                    </div>
+                </div>
+            </div>
+            </div>
+            <button class="modal-close is-large" aria-label="close"></button>
+          </div>
     </main>
 
     <script src="./assets/script.js"></script>
