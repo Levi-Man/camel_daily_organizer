@@ -2,9 +2,13 @@
 apiKey = 'le2A6ZGlRehlD4SAz7n3jYlKeXWLWCLnwTzKHbxu6JLZXV8ItBJEtfXV';
 const submit = document.getElementById("submitBtn")
 const imgContainer = document.getElementById("imgcontainer")
+let soloImage = document.getElementById("solo-image");
 
+let dataImage = localStorage.getItem("imgData");
+console.log(dataImage);
+soloImage.src = dataImage
 
-
+//modal for pexel search
 document.addEventListener('DOMContentLoaded', () => {
   // Functions to open and close a modal
   function openModal($el) {
@@ -58,7 +62,7 @@ function getImg(e) {
 
   const apiUrl = 'https://api.pexels.com/v1/search?query=' + searchstring + '&per_page=8';
   console.log(searchstring);
-  console.log(apiURL);
+  // console.log(apiURL);
   fetch(apiUrl, {
     headers: {
       Authorization: apiKey
@@ -75,10 +79,33 @@ function getImg(e) {
       imgContainer.innerHTML = ""
       for (let photo of photos) {
         const img = document.createElement("img")
-        img.src = photo.src.medium
+        img.src = photo.src.tiny
         img.alt = photo.alt
         imgContainer.appendChild(img)
-      }
+        
+        //click to add photo to solo-image on main page
+        img.addEventListener("click", changeImage)
+
+        function changeImage(e) {
+          console.log(e.target);
+          soloImage.src=photo.src.medium;
+          console.log(soloImage.src);
+
+          //save image to local storage as base64
+          // imgData = convertBase64(soloImage);
+          localStorage.setItem("imgData", photo.src.medium);
+
+          // function convertBase64(img) {
+          //   let canvas = document.createElement("canvas");
+          //   canvas.width = img.width;
+          //   canvas.height = img.height;
+          //   let ctx = canvas.getContext("2d");
+          //   ctx.drawImage(img, 0, 0);
+          //   let dataURL = canvas.toDataURL("image/png");
+          //   return dataURL.replace(/^data:image\/(png|jpg);base64,/,"");
+          // }
+        }
+       }
 
     })
     .catch(error => {
@@ -158,79 +185,52 @@ let clearButton = document.getElementById('clear_button')
 
 let tasks = []
 
-// render tasks
 function renderTasks() {
   taskList.innerHTML = "";
-
-  // makes new task li
   for (let i = 0; i < tasks.length; i++) {
     const task = tasks[i];
-    
     let li = document.createElement("li")
     li.textContent = task;
     li.classList.add("is-clickable", "notification", "is-warning", "mb-3", "p-2")
     li.setAttribute('data-index', i);
-
     var button = document.createElement("button");
     button.className = "delete"
-    // button.setAttribute("clear_task")
-
     li.appendChild(button)
     taskList.appendChild(li)
   }
 }
 
-//changes color when clicked
-
-
 function loadTasks() {
   // Get tasks from localStorage
   var taskStorage = JSON.parse(localStorage.getItem("tasks"));
-
   // updates the task array
   if (taskStorage !== null) {
     tasks = taskStorage;
   }
-
   renderTasks();
 }
 
 function saveTasks() {
-  // Stringify and set key in localStorage to todos array
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
-// adds the submitted value to the list
 addButton.addEventListener("click", function(event) {
   event.preventDefault();
-
   var taskText = taskInput.value.trim();
-
-  // Return from function early if submitted todoText is blank
   if (taskText === "") {
     return;
   }
-
-  // Add new todoText to todos array, clear the input
   tasks.push(taskText);
   taskInput.value = "";
-
-  // Store updated todos in localStorage, re-render the list
   saveTasks();
   loadTasks();
 });
 
-// Add click event delete tasks
 taskList.addEventListener("click", function(event) {
   var element = event.target;
-
-  // Checks if element is a button
   if (element.matches("button") === true) {
-    // Get its data-index value and remove the todo element from the list
     var index = element.parentElement.getAttribute("data-index");
     tasks.splice(index, 1);
-
-    // Store updated todos in localStorage, re-render the list
     saveTasks();
     renderTasks();
   }
@@ -240,5 +240,3 @@ clearButton.addEventListener('click', function () {
   localStorage.removeItem('tasks');
   taskList.innerHTML="";
 })
-
-loadTasks();
