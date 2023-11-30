@@ -9,11 +9,8 @@
     <!-- Bulma CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <!-- dayJS -->
-    <script
-        src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
-        integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
-        crossorigin="anonymous"
-    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+        integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U=" crossorigin="anonymous"></script>
 </head>
 
 
@@ -39,9 +36,10 @@
                     <button id="new-random" class="button is-warning is-outlined">Generate New Quote</button>
                 </div>
             </div>
-           <!-- time and day widget -->
-           <div class="tile is-parent is-2">
-                <div class="tile is-child notification is-success has-background-grey-darker has-text-centered is-align-content-center">
+            <!-- time and day widget -->
+            <div class="tile is-parent is-2">
+                <div
+                    class="tile is-child notification is-success has-background-grey-darker has-text-centered is-align-content-center">
                     <p id="time" class="is-size-1 is-size-1-touch has-text-weight-bold has-text-white-bis "></p>
                     <p id="day" class="has-text-white-bis"></p>
                     <p id="monthly" class="has-text-white-bis"></p>
@@ -60,39 +58,43 @@
         </div>
         <!-- row 2  -->
         <div class="tile is-ancestor has-background-black-ter">
+
             <!-- journal -->
             <div class="tile is-parent">
-                <article class="tile is-child has-background-grey-darker notification is-success">
-                    <div class="content">
-                        <!-- titles -->
-                        <p class="title">Daily Journal</p>
-                        <p class="subtitle">🌊 Setting up my day for success</p>
-                        <!-- boxes -->
+                <form id="journal-form">
+                    <article class="tile is-child has-background-grey-darker notification is-success">
                         <div class="content">
-                            <div>
-                                <!-- Top box -->
-                                <p class="title is-6 has-text-weight-normal is-italic	">3 things I am greatful for</p>
-                                <div class="box content pt-2 has-background-grey-dark">
-                                    <ol type="1">
-                                        <li>Coffee</li>
-                                        <li>Tea</li>
-                                        <li>Milk</li>
-                                    </ol>
-                                </div>
-                                <!-- Bottom Box -->
-                                <p class="title is-6 has-text-weight-normal is-italic	">3 goals for today</p>
-                                <div class="box content pt-2 has-background-grey-dark">
-                                    <ol type="1">
-                                        <li>Study</li>
-                                        <li>Workout</li>
-                                        <li>Get 8h of sleep</li>
-                                    </ol>
+                            <!-- titles -->
+                            <p class="title">Daily Journal</p>
+                            <p class="subtitle">🌊 Setting up my day for success</p>
+                            <!-- boxes -->
+                            <div class="content">
+                                <div>
+                                    <!-- Top box -->
+                                    <p class="title is-6 has-text-weight-normal is-italic	">3 things I am greatful for
+                                    </p>
+                                    <div class="box content pt-2 has-background-grey-dark">
+                                        <ol type="1">
+                                            <li><input type= "text" id= "greatfull1"></li>
+                                            <li><input type= "text" id= "greatfull2"></li>
+                                            <li><input type= "text" id= "greatfull3"></li>
+                                        </ol>
+                                    </div>
+                                    <!-- Bottom Box -->
+                                    <p class="title is-6 has-text-weight-normal is-italic	">3 goals for today</p>
+                                    <div class="box content pt-2 has-background-grey-dark">
+                                        <ol type="1">
+                                            <li><input type= "text" id= "goalsl1"></li>
+                                            <li><input type= "text" id= "goalsl2"></li>
+                                            <li><input type= "text" id= "goalsl3"></li>
+                                        </ol>
+                                    </div>
                                 </div>
                             </div>
+                            <button class="button is-warning is-outlined" id="log-my-journal">Log My Journal</button>
                         </div>
-                        <button class="button is-warning is-outlined">Log My Journal</button>
-                    </div>
-                </article>
+                    </article>
+                </form>
             </div>
 
             <!-- solo image tile -->
@@ -101,13 +103,13 @@
                     <p class="title">Next Major Purchase</p>
                     <p class="subtitle">With with the help of a software dev salary...</p>
                     <div class="">
-                        
-                            <img src="./images/pexels-auto-records-10292240.jpg">
+
+                        <img src="./images/pexels-auto-records-10292240.jpg">
                         </figure>
                     </div>
                     <button id="change-image" class="js-modal-trigger" data-target="pexel-modal">
                         Change Image
-                      </button>
+                    </button>
                 </article>
             </div>
 
@@ -128,7 +130,8 @@
                     </div>
                     <div class="control my-4">
                         <ul id="task_list">
-                            <li class="is-clickable notification is-warning mb-3 p-2">Practice more Javascript<button id="clear_task" class="delete"></button></li>
+                            <li class="is-clickable notification is-warning mb-3 p-2">Practice more Javascript<button
+                                    id="clear_task" class="delete"></button></li>
                         </ul>
                     </div>
                     <div class="field is-grouped is-grouped-centered">
@@ -193,8 +196,8 @@
                 </div>
             </div>
         </div>
-       
-       <!-- Modal -->
+
+        <!-- Modal -->
         <div id="pexel-modal" class="modal">
             <div class="modal-background"></div>
             <div class="modal-content">
@@ -227,6 +230,7 @@
     </main>
 
     <script src="./assets/script.js"></script>
+
 </body>
 
 </html>
