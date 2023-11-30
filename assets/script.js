@@ -20,6 +20,22 @@ if (localStorage.getItem("imgData") === null) {
   soloImage.src = "./images/pexels-auto-records-10292240.jpg";
 }
 
+
+// Journal entry variable declarations
+var journalForm = document.querySelector("#journal-form");
+var greatfull1 = document.querySelector("#greatfull1");
+var greatfull2 = document.querySelector("#greatfull2");
+var greatfull3 = document.querySelector("#greatfull3");
+var goalsl1 = document.querySelector("#goalsl1");
+var goalsl2 = document.querySelector("#goalsl2");
+var goalsl3 = document.querySelector("#goalsl3");
+var logMyJournal = document.querySelector("#log-my-journal");
+var myJournal = {
+  greatfull: [],
+  goals: []
+};
+
+
 if (localStorage.getItem("imgDataBanner") === null) {
   bannerImage.src = "./images/199286248_l_normal_none.png";
 }
@@ -187,7 +203,7 @@ console.log("banner search");
   }
 
 // Quote API
-  
+
 let quoteContainer = document.getElementById("quote-text");
 let authorContainer = document.getElementById("author-name")
 let newRandom = document.getElementById('new-random');
@@ -298,6 +314,73 @@ addButton.addEventListener("click", function(event) {
   loadTasks();
 });
 
+//* add new list item
+
+//function newTask(params) {
+// let li = document.createElement("li");
+// let inputValue = document.getElementById("task_input").value;
+// let listText = 
+//}
+
+function initMyJournal() {
+  var storedMyJournal = JSON.parse(localStorage.getItem("myJournal"));
+  if (storedMyJournal !== null && (storedMyJournal.greatfull.length > 0 || storedMyJournal.goals.length > 0)) {
+    myJournal = storedMyJournal;
+  }
+  renderMyJournal();
+}
+
+function storeMyJournal() {
+  localStorage.setItem("myJournal", JSON.stringify(myJournal));
+}
+
+function renderMyJournal() {
+  greatfull1.value = myJournal.greatfull[0] || "";
+  greatfull2.value = myJournal.greatfull[1] || "";
+  greatfull3.value = myJournal.greatfull[2] || "";
+  goalsl1.value = myJournal.goals[0] || "";
+  goalsl2.value = myJournal.goals[1] || "";
+  goalsl3.value = myJournal.goals[2] || "";
+}
+
+journalForm.addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  myJournal.greatfull.push(greatfull1.value);
+  myJournal.greatfull.push(greatfull2.value);
+  myJournal.greatfull.push(greatfull3.value);
+  myJournal.goals.push(goalsl1.value);
+  myJournal.goals.push(goalsl2.value);
+  myJournal.goals.push(goalsl3.value);
+  storeMyJournal();
+  renderMyJournal();
+});
+
+function myJournalSubmit(triggerEvent) {
+    myJournal.greatfull[0] = greatfull1.value;
+    myJournal.greatfull[1] = greatfull2.value;
+    myJournal.greatfull[2] = greatfull3.value;
+    myJournal.goals[0] = goalsl1.value;
+    myJournal.goals[1] = goalsl2.value;
+    myJournal.goals[2] = goalsl3.value;
+    storeMyJournal();
+    renderMyJournal();
+};
+
+journalForm.addEventListener("submit", function(event){
+  event.preventDefault();
+  myJournalSubmit(event);
+});
+
+journalForm.addEventListener("keydown", function(event){
+  if(event.code == "Enter") {
+    event.preventDefault();
+    myJournalSubmit(event);
+  } 
+});
+
+initMyJournal();
+
 taskList.addEventListener("click", function(event) {
   var element = event.target;
   if (element.matches("button") === true) {
@@ -312,3 +395,4 @@ clearButton.addEventListener('click', function () {
   localStorage.removeItem('tasks');
   taskList.innerHTML="";
 })
+
