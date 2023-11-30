@@ -20,9 +20,11 @@
 
 <body>
 
-    <div class="img_container has-background-black-ter">
-        <img class="banner_img" src="./images/199286248_l_normal_none.png" alt="">
-        <div class="cvrbtn button is-warning is-small">Change Cover</div>
+    <div id="top-banner" class="img_container has-background-black-ter">
+        <img id="top-banner-image" class="banner_img" src="./images/199286248_l_normal_none.png" alt="">
+        <button id="change-image" class="js-modal-trigger is-warning is-small" data-target="banner-modal">
+            Change Image
+          </button>
     </div>
 
     <main class="section has-background-black-ter">
@@ -189,7 +191,7 @@
             </div>
         </div>
        
-       <!-- Modal -->
+       <!-- Modal for solo image -->
         <div id="pexel-modal" class="modal">
             <div class="modal-background"></div>
             <div class="modal-content">
@@ -219,6 +221,37 @@
             </div>
             <button class="modal-close is-large" aria-label="close"></button>
         </div>
+
+        <!-- Modal for top banner -->
+        <div id="banner-modal" class="modal">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+              <!-- Any other Bulma elements you want -->
+              <div class="container">
+                <div class="row">
+                    <div class="col-8">
+                        <form>
+                            <label for="pexelimgBanner">imgsrch</label>
+                            <input type="text" id="pexelimgBanner" name="imgsrch"><br><br>
+
+                            <input id="submitBtnBanner" type="submit" value="Submit">
+                        </form>
+
+                        <div id="bannercontainer">
+
+                        </div>
+
+                        <p>Click the "Submit" button to start button.</p>
+                        mood board
+                    </div>
+                    <div class="col-4">
+                        social links or other links
+                    </div>
+                </div>
+            </div>
+            </div>
+            <button class="modal-close is-large" aria-label="close"></button>
+          </div>
     </main>
 
     <script src="./assets/script.js"></script>
