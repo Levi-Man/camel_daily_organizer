@@ -1,18 +1,52 @@
 // Pexel API
 apiKey = 'le2A6ZGlRehlD4SAz7n3jYlKeXWLWCLnwTzKHbxu6JLZXV8ItBJEtfXV';
-const submit = document.getElementById("submitBtn")
-const imgContainer = document.getElementById("imgcontainer")
+const submit = document.getElementById("submitBtn");
+const submitBanner = document.getElementById("submitBtnBanner");
+const imgContainer = document.getElementById("imgcontainer");
+const bannerContainer = document.getElementById("bannercontainer");
 let soloImage = document.getElementById("solo-image");
+let bannerImage = document.getElementById("top-banner-image");
 
 let dataImage = localStorage.getItem("imgData");
 console.log(dataImage);
-soloImage.src = dataImage
+soloImage.src = dataImage;
 
-//modal for pexel search
+let dataImageBanner = localStorage.getItem("imgDataBanner");
+console.log(dataImage);
+bannerImage.src = dataImageBanner
+
+//Check if there is stored data in local storage
+if (localStorage.getItem("imgData") === null) {
+  soloImage.src = "./images/pexels-auto-records-10292240.jpg";
+}
+
+
+// Journal entry variable declarations
+var journalForm = document.querySelector("#journal-form");
+var greatfull1 = document.querySelector("#greatfull1");
+var greatfull2 = document.querySelector("#greatfull2");
+var greatfull3 = document.querySelector("#greatfull3");
+var goalsl1 = document.querySelector("#goalsl1");
+var goalsl2 = document.querySelector("#goalsl2");
+var goalsl3 = document.querySelector("#goalsl3");
+var logMyJournal = document.querySelector("#log-my-journal");
+var myJournal = {
+  greatfull: [],
+  goals: []
+};
+
+
+if (localStorage.getItem("imgDataBanner") === null) {
+  bannerImage.src = "./images/199286248_l_normal_none.png";
+}
+
+
+//modal for pexel search from BULMA
 document.addEventListener('DOMContentLoaded', () => {
   // Functions to open and close a modal
   function openModal($el) {
     $el.classList.add('is-active');
+    // console.log($el);
   }
 
   function closeModal($el) {
@@ -52,15 +86,17 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-submit.addEventListener("click", getImg)
+submit.addEventListener("click", getImg);
+submitBanner.addEventListener("click", getImgBanner);
 
+// SOLO IMAGE MODAL SEARCH from BULMA
 function getImg(e) {
   e.preventDefault();
 
   const searchstring = document.getElementById("pexelimg").value
   if (searchstring === "") return;
 
-  const apiUrl = 'https://api.pexels.com/v1/search?query=' + searchstring + '&per_page=8';
+  const apiUrl = 'https://api.pexels.com/v1/search?query=' + searchstring + '&per_page=20';
   console.log(searchstring);
   // console.log(apiURL);
   fetch(apiUrl, {
@@ -114,8 +150,60 @@ function getImg(e) {
     });
 }
 
+// BANNER MODAL SEARCH
+function getImgBanner(e) {
+  e.preventDefault();
+console.log("banner search");
+  const searchstring = document.getElementById("pexelimgBanner").value
+  if (searchstring === "") return;
+
+  const apiUrl = 'https://api.pexels.com/v1/search?query=' + searchstring + '&per_page=20';
+  console.log(searchstring);
+  console.log(apiUrl);
+  fetch(apiUrl, {
+    headers: {
+      Authorization: apiKey
+    }
+  })
+    .then(response => response.json())
+    .then(data => {
+      // Process the data returned from the API
+      console.log(data)
+
+      const per_page = data.per_page
+      const photos = data.photos
+
+      bannerContainer.innerHTML = ""
+      for (let photo of photos) {
+        const img = document.createElement("img")
+        img.src = photo.src.tiny
+        img.alt = photo.alt
+        bannerContainer.appendChild(img)
+        
+        //click to add photo to solo-image on main page
+        img.addEventListener("click", changeImage)
+
+        function changeImage(e) {
+          console.log(e.target);
+          bannerImage.src=photo.src.landscape;
+          console.log(soloImage.src);
+
+          //save image to local storage as base64
+          // imgData = convertBase64(soloImage);
+          localStorage.setItem("imgDataBanner", photo.src.landscape);
+
+         }
+       }
+
+    })
+    .catch(error => {
+
+      console.error('Error fetching data:', error);
+    });
+  }
+
 // Quote API
-  
+
 let quoteContainer = document.getElementById("quote-text");
 let authorContainer = document.getElementById("author-name")
 let newRandom = document.getElementById('new-random');
@@ -176,6 +264,69 @@ function loadTime() {
 loadTime();
 setInterval(loadTime, 1000);
 
+
+//journal widget
+
+function initMyJournal() {
+  var storedMyJournal = JSON.parse(localStorage.getItem("myJournal"));
+  if (storedMyJournal !== null && (storedMyJournal.greatfull.length > 0 || storedMyJournal.goals.length > 0)) {
+    myJournal = storedMyJournal;
+  }
+  renderMyJournal();
+}
+
+function storeMyJournal() {
+  localStorage.setItem("myJournal", JSON.stringify(myJournal));
+}
+
+function renderMyJournal() {
+  greatfull1.value = myJournal.greatfull[0] || "";
+  greatfull2.value = myJournal.greatfull[1] || "";
+  greatfull3.value = myJournal.greatfull[2] || "";
+  goalsl1.value = myJournal.goals[0] || "";
+  goalsl2.value = myJournal.goals[1] || "";
+  goalsl3.value = myJournal.goals[2] || "";
+}
+
+journalForm.addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  myJournal.greatfull.push(greatfull1.value);
+  myJournal.greatfull.push(greatfull2.value);
+  myJournal.greatfull.push(greatfull3.value);
+  myJournal.goals.push(goalsl1.value);
+  myJournal.goals.push(goalsl2.value);
+  myJournal.goals.push(goalsl3.value);
+  storeMyJournal();
+  renderMyJournal();
+});
+
+function myJournalSubmit(triggerEvent) {
+    myJournal.greatfull[0] = greatfull1.value;
+    myJournal.greatfull[1] = greatfull2.value;
+    myJournal.greatfull[2] = greatfull3.value;
+    myJournal.goals[0] = goalsl1.value;
+    myJournal.goals[1] = goalsl2.value;
+    myJournal.goals[2] = goalsl3.value;
+    storeMyJournal();
+    renderMyJournal();
+};
+
+journalForm.addEventListener("submit", function(event){
+  event.preventDefault();
+  myJournalSubmit(event);
+});
+
+journalForm.addEventListener("keydown", function(event){
+  if(event.code == "Enter") {
+    event.preventDefault();
+    myJournalSubmit(event);
+  } 
+});
+
+initMyJournal();
+
+
 // To Do List
 
 let taskInput = document.getElementById('task_input')
@@ -230,7 +381,6 @@ addButton.addEventListener("click", function(event) {
   loadTasks();
 });
 
-// adds tasks to list
 taskList.addEventListener("click", function(event) {
   var element = event.target;
   if (element.matches("button") === true) {
