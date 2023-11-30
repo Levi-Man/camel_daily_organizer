@@ -121,38 +121,124 @@ newRandom.addEventListener('click', randomQuote);
 
 // clock widget
 
-let time = document.getElementById('time')
-let day = document.getElementById('day')
-let monthYear = document.getElementById('monthly')
+function loadTime() {
+  let time = document.getElementById('time')
+  let day = document.getElementById('day')
+  let monthYear = document.getElementById('monthly')
 
-function getTime(params) {
-  let timeCalc = dayjs().format('HH:mm');
-  time.textContent = timeCalc;
+  function getTime() {
+    let timeCalc = dayjs().format('HH:mm');
+    time.textContent = timeCalc;
+  }
+
+  function getDay() {
+    let dayCalc = dayjs().format("dddd");
+    day.textContent = dayCalc;
+  }
+
+  function getMonthYear() {
+    let monthYearCalc = dayjs().format('MMM D, YYYY');
+    monthYear.textContent = monthYearCalc;
+  }
+
+  getTime();
+  getDay();
+  getMonthYear();
 }
 
-function getDay(params) {
-  let dayCalc = dayjs().format("dddd");
-  day.textContent = dayCalc;
+loadTime();
+setInterval(loadTime, 1000);
+
+// To Do List
+
+let taskInput = document.getElementById('task_input')
+let addButton = document.getElementById('task_add')
+let taskList = document.getElementById('task_list')
+let clearButton = document.getElementById('clear_button')
+
+let tasks = []
+
+// render tasks
+function renderTasks() {
+  taskList.innerHTML = "";
+
+  // makes new task li
+  for (let i = 0; i < tasks.length; i++) {
+    const task = tasks[i];
+    
+    let li = document.createElement("li")
+    li.textContent = task;
+    li.classList.add("is-clickable", "notification", "is-warning", "mb-3", "p-2")
+    li.setAttribute('data-index', i);
+
+    var button = document.createElement("button");
+    button.className = "delete"
+    // button.setAttribute("clear_task")
+
+    li.appendChild(button)
+    taskList.appendChild(li)
+  }
 }
 
-function getMonthYear(params) {
-  let monthYearCalc = dayjs().format('MMM D, YYYY');
-  monthYear.textContent = monthYearCalc;
+//changes color when clicked
+
+
+function loadTasks() {
+  // Get tasks from localStorage
+  var taskStorage = JSON.parse(localStorage.getItem("tasks"));
+
+  // updates the task array
+  if (taskStorage !== null) {
+    tasks = taskStorage;
+  }
+
+  renderTasks();
 }
 
-getTime();
-getDay();
-getMonthYear();
-
-// to do list
-let taskList = document.getElementById("task_list")
-let addButton = document.getElementById("task_add")
-let clearButton = document.getElementById("clear_task")
-
-// add new list item
-
-function newTask(params) {
-  let li = document.createElement("li");
-  let inputValue = document.getElementById("task_input").value;
-  let listText = 
+function saveTasks() {
+  // Stringify and set key in localStorage to todos array
+  localStorage.setItem("tasks", JSON.stringify(tasks));
 }
+
+// adds the submitted value to the list
+addButton.addEventListener("click", function(event) {
+  event.preventDefault();
+
+  var taskText = taskInput.value.trim();
+
+  // Return from function early if submitted todoText is blank
+  if (taskText === "") {
+    return;
+  }
+
+  // Add new todoText to todos array, clear the input
+  tasks.push(taskText);
+  taskInput.value = "";
+
+  // Store updated todos in localStorage, re-render the list
+  saveTasks();
+  loadTasks();
+});
+
+// Add click event delete tasks
+taskList.addEventListener("click", function(event) {
+  var element = event.target;
+
+  // Checks if element is a button
+  if (element.matches("button") === true) {
+    // Get its data-index value and remove the todo element from the list
+    var index = element.parentElement.getAttribute("data-index");
+    tasks.splice(index, 1);
+
+    // Store updated todos in localStorage, re-render the list
+    saveTasks();
+    renderTasks();
+  }
+});
+
+clearButton.addEventListener('click', function () {
+  localStorage.removeItem('tasks');
+  taskList.innerHTML="";
+})
+
+loadTasks();
