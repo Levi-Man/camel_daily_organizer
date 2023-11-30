@@ -25,7 +25,7 @@ if (localStorage.getItem("imgDataBanner") === null) {
 }
 
 
-//modal for pexel search
+//modal for pexel search from BULMA
 document.addEventListener('DOMContentLoaded', () => {
   // Functions to open and close a modal
   function openModal($el) {
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
 submit.addEventListener("click", getImg);
 submitBanner.addEventListener("click", getImgBanner);
 
-// SOLO IMAGE MODAL SEARCH
+// SOLO IMAGE MODAL SEARCH from BULMA
 function getImg(e) {
   e.preventDefault();
 
