@@ -49,7 +49,7 @@
                     <p id="monthly" class="has-text-white-bis"></p>
                 </div>
             </div>
-            <!-- waether widget -->
+            <!-- weather widget -->
             <div class="tile is-parent is-2">
                 <div
                     class="tile is-child notification is-success  has-background-grey-darker has-text-centered is-align-content-center">
@@ -115,7 +115,7 @@
 
                         </figure>
                     </div>
-                    <button id="change-image" class="js-modal-trigger" data-target="pexel-modal">
+                    <button id="change-image" class="js-modal-trigger button is-warning mt-3" data-target="pexel-modal">
                         Change Image
                     </button>
                 </article>
@@ -209,33 +209,26 @@
        
        <!-- Modal for solo image -->
         <div id="pexel-modal" class="modal">
-            <div class="modal-background"></div>
-            <div class="modal-content">
-                <!-- Any other Bulma elements you want -->
-                <div class="container">
-                    <div class="row">
-                        <div class="col-8">
-                            <form>
-                                <label for="pexelimg">imgsrch</label>
-                                <input type="text" id="pexelimg" name="imgsrch"><br><br>
-
-                                <input id="submitBtn" type="submit" value="Submit">
-                            </form>
-
-                            <div id="imgcontainer">
-
+            <div class="modal-background "></div>
+                <div class="modal-content is-clipped">
+                    <div class="tile is-ancestor has-background-grey-darker notification is-primary">
+                        <div class="tile is-parent">
+                            <div class="tile is-child">
+                                <div class="label is-size-5 has-text-white-ter has-text-centered py-4">Find the best free stock photos</div>
+                                <div class="field is-grouped pb-4">
+                                    <p class="control is-expanded">
+                                    <input id="pexelimg" class="input" type="text" placeholder="Search for an image...">
+                                    </p>
+                                    <p class="control">
+                                    <input id="submitBtn" class="button is-link" type="submit" value="search">
+                                    </p>
+                                </div>
+                                <div id="imgcontainer" class="img_result  pb-4"></div>
                             </div>
-
-                            <p>Click the "Submit" button to start button.</p>
-                            mood board
-                        </div>
-                        <div class="col-4">
-                            social links or other links
                         </div>
                     </div>
                 </div>
             </div>
-            <button class="modal-close is-large" aria-label="close"></button>
         </div>
 
         <!-- Modal for top banner -->

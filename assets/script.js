@@ -264,63 +264,8 @@ function loadTime() {
 loadTime();
 setInterval(loadTime, 1000);
 
-// To Do List
 
-let taskInput = document.getElementById('task_input')
-let addButton = document.getElementById('task_add')
-let taskList = document.getElementById('task_list')
-let clearButton = document.getElementById('clear_button')
-
-let tasks = []
-
-function renderTasks() {
-  taskList.innerHTML = "";
-  for (let i = 0; i < tasks.length; i++) {
-    const task = tasks[i];
-    let li = document.createElement("li")
-    li.textContent = task;
-    li.classList.add("is-clickable", "notification", "is-warning", "mb-3", "p-2")
-    li.setAttribute('data-index', i);
-    var button = document.createElement("button");
-    button.className = "delete"
-    li.appendChild(button)
-    taskList.appendChild(li)
-  }
-}
-
-function loadTasks() {
-  // Get tasks from localStorage
-  var taskStorage = JSON.parse(localStorage.getItem("tasks"));
-  // updates the task array
-  if (taskStorage !== null) {
-    tasks = taskStorage;
-  }
-  renderTasks();
-}
-
-function saveTasks() {
-  localStorage.setItem("tasks", JSON.stringify(tasks));
-}
-
-addButton.addEventListener("click", function(event) {
-  event.preventDefault();
-  var taskText = taskInput.value.trim();
-  if (taskText === "") {
-    return;
-  }
-  tasks.push(taskText);
-  taskInput.value = "";
-  saveTasks();
-  loadTasks();
-});
-
-//* add new list item
-
-//function newTask(params) {
-// let li = document.createElement("li");
-// let inputValue = document.getElementById("task_input").value;
-// let listText = 
-//}
+//journal widget
 
 function initMyJournal() {
   var storedMyJournal = JSON.parse(localStorage.getItem("myJournal"));
@@ -381,6 +326,61 @@ journalForm.addEventListener("keydown", function(event){
 
 initMyJournal();
 
+
+// To Do List
+
+let taskInput = document.getElementById('task_input')
+let addButton = document.getElementById('task_add')
+let taskList = document.getElementById('task_list')
+let clearButton = document.getElementById('clear_button')
+
+let tasks = []
+
+// renders the task
+function renderTasks() {
+  taskList.innerHTML = "";
+  for (let i = 0; i < tasks.length; i++) {
+    const task = tasks[i];
+    let li = document.createElement("li")
+    li.textContent = task;
+    li.classList.add("is-clickable", "notification", "is-warning", "mb-3", "p-2")
+    li.setAttribute('data-index', i);
+    var button = document.createElement("button");
+    button.className = "delete"
+    li.appendChild(button)
+    taskList.appendChild(li)
+  }
+}
+
+// loads the task
+function loadTasks() {
+  // Get tasks from localStorage
+  var taskStorage = JSON.parse(localStorage.getItem("tasks"));
+  // updates the task array
+  if (taskStorage !== null) {
+    tasks = taskStorage;
+  }
+  renderTasks();
+}
+
+// save the tasks
+function saveTasks() {
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+// submits tasks 
+addButton.addEventListener("click", function(event) {
+  event.preventDefault();
+  var taskText = taskInput.value.trim();
+  if (taskText === "") {
+    return;
+  }
+  tasks.push(taskText);
+  taskInput.value = "";
+  saveTasks();
+  loadTasks();
+});
+
 taskList.addEventListener("click", function(event) {
   var element = event.target;
   if (element.matches("button") === true) {
@@ -391,8 +391,11 @@ taskList.addEventListener("click", function(event) {
   }
 });
 
+// clears local storage
 clearButton.addEventListener('click', function () {
   localStorage.removeItem('tasks');
   taskList.innerHTML="";
 })
 
+loadTasks();
+renderTasks();
