@@ -148,38 +148,95 @@ newRandom.addEventListener('click', randomQuote);
 
 // clock widget
 
-let time = document.getElementById('time')
-let day = document.getElementById('day')
-let monthYear = document.getElementById('monthly')
+function loadTime() {
+  let time = document.getElementById('time')
+  let day = document.getElementById('day')
+  let monthYear = document.getElementById('monthly')
 
-function getTime(params) {
-  let timeCalc = dayjs().format('HH:mm');
-  time.textContent = timeCalc;
+  function getTime() {
+    let timeCalc = dayjs().format('HH:mm');
+    time.textContent = timeCalc;
+  }
+
+  function getDay() {
+    let dayCalc = dayjs().format("dddd");
+    day.textContent = dayCalc;
+  }
+
+  function getMonthYear() {
+    let monthYearCalc = dayjs().format('MMM D, YYYY');
+    monthYear.textContent = monthYearCalc;
+  }
+
+  getTime();
+  getDay();
+  getMonthYear();
 }
 
-function getDay(params) {
-  let dayCalc = dayjs().format("dddd");
-  day.textContent = dayCalc;
+loadTime();
+setInterval(loadTime, 1000);
+
+// To Do List
+
+let taskInput = document.getElementById('task_input')
+let addButton = document.getElementById('task_add')
+let taskList = document.getElementById('task_list')
+let clearButton = document.getElementById('clear_button')
+
+let tasks = []
+
+function renderTasks() {
+  taskList.innerHTML = "";
+  for (let i = 0; i < tasks.length; i++) {
+    const task = tasks[i];
+    let li = document.createElement("li")
+    li.textContent = task;
+    li.classList.add("is-clickable", "notification", "is-warning", "mb-3", "p-2")
+    li.setAttribute('data-index', i);
+    var button = document.createElement("button");
+    button.className = "delete"
+    li.appendChild(button)
+    taskList.appendChild(li)
+  }
 }
 
-function getMonthYear(params) {
-  let monthYearCalc = dayjs().format('MMM D, YYYY');
-  monthYear.textContent = monthYearCalc;
+function loadTasks() {
+  // Get tasks from localStorage
+  var taskStorage = JSON.parse(localStorage.getItem("tasks"));
+  // updates the task array
+  if (taskStorage !== null) {
+    tasks = taskStorage;
+  }
+  renderTasks();
 }
 
-getTime();
-getDay();
-getMonthYear();
+function saveTasks() {
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
 
-// to do list
-let taskList = document.getElementById("task_list")
-let addButton = document.getElementById("task_add")
-let clearButton = document.getElementById("clear_task")
+addButton.addEventListener("click", function(event) {
+  event.preventDefault();
+  var taskText = taskInput.value.trim();
+  if (taskText === "") {
+    return;
+  }
+  tasks.push(taskText);
+  taskInput.value = "";
+  saveTasks();
+  loadTasks();
+});
 
-// add new list item
+taskList.addEventListener("click", function(event) {
+  var element = event.target;
+  if (element.matches("button") === true) {
+    var index = element.parentElement.getAttribute("data-index");
+    tasks.splice(index, 1);
+    saveTasks();
+    renderTasks();
+  }
+});
 
-// function newTask(params) {
-//   let li = document.createElement("li");
-//   let inputValue = document.getElementById("task_input").value;
-//   let listText = 
-// }
+clearButton.addEventListener('click', function () {
+  localStorage.removeItem('tasks');
+  taskList.innerHTML="";
+})
