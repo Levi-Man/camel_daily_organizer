@@ -35,6 +35,14 @@ WHEN I want to personalize a widget's settings THEN I am given the option to adj
 
 WHEN I save any changes THEN I will be able to hit save and have everything saved to local storage
 
+## Screen Shots
+![RPReplay_Final1701450604](https://github.com/Levi-Man/camel_daily_organizer/assets/149631014/983c6402-bb8a-469c-8780-211480b2384e)
+![RPReplay_Final1701450025](https://github.com/Levi-Man/camel_daily_organizer/assets/149631014/50de1372-1315-4a8d-9186-a527a62658b7)
+
+https://github.com/Levi-Man/camel_daily_organizer/assets/149631014/f0f8938f-655e-4dfc-8725-633f37a7ca38
+
+
+
 ## Wireframes
 Below is a screenshot of a simple wireframe for us to follow.
 ![Screenshot 2023-11-27 130228](https://github.com/Levi-Man/camel_daily_organizer/assets/149728408/41b64b26-af2a-4c29-9298-97335181b4f9)
