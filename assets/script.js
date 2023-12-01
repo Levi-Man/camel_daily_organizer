@@ -261,35 +261,24 @@ let temperatureDisplay = document.getElementById('temperature')
 let conditionDisplay = document.getElementById('condition')
 let locationDisplay = document.getElementById('location')
 let citySearch = document.getElementById('citysearch')
+document.getElementById("new-location").addEventListener("click", getLocation);
 
-
-navigator.geolocation.getCurrentPosition(getLatLon);
-
-function getLatLon(position) {
-  let latitude = position.coords.latitude;
-  let longitude = position.coords.longitude;
-    console.log("Latitude is "+latitude);
-    console.log("Longitude is "+longitude);
-
-    fetch('https://api.openweathermap.org/data/2.5/weather?lat='+latitude+'&lon='+longitude+'&units=metric&appid='+weatherApiKey+'')
-
+if (localStorage.getItem("lonValue") === null || localStorage.getItem("latValue") === null) {
+  getLocation();
+} else {
+  getWeather(localStorage.getItem("lonValue"), localStorage.getItem("latValue"));
+}
+function getWeather(longitude, latitude) {
+  fetch('https://api.openweathermap.org/data/2.5/weather?lat=' + latitude + '&lon=' + longitude + '&units=metric&appid=' + weatherApiKey + '')
     .then(function (response) {
       return response.json();
     })
-
     .then(function (current) {
       console.log(current)
-      
       console.log(current.name)
       let locationValue = current.name;
       let temperatureValue = current.main.temp;
       let conditionValue = current.weather[0].description;
-
-      function roundDown(params) {
-        Math.floor(temperatureValue)
-      }
-
-      roundDown();
 
       temperatureDisplay.textContent = temperatureValue + "°C";
       conditionDisplay.textContent = conditionValue;
@@ -297,6 +286,21 @@ function getLatLon(position) {
     })
 }
 
+function getLocation() {
+  navigator.geolocation.getCurrentPosition(
+    function getLatLon(position) {
+      let latitude = position.coords.latitude;
+      let longitude = position.coords.longitude;
+      console.log(position);
+      console.log("Latitude is " + latitude);
+      console.log("Longitude is " + longitude);
+
+      localStorage.setItem("lonValue", longitude);
+      localStorage.setItem("latValue", latitude);
+
+      getWeather(longitude, latitude);
+    })
+}
 
   // journal
 
