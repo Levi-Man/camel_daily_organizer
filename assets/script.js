@@ -463,10 +463,10 @@ function addTransaction() {
     }
      transactions.push({ name, value });
      updateTransactionList();
-     updateTotal()
+     updateTotal();
      // Clear input fields
      nameInput.value = "";
-     valueInput.value = ""
+     valueInput.value = "";
  }
 
 function updateTransactionList() {
