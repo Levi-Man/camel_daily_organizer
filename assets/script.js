@@ -20,22 +20,6 @@ if (localStorage.getItem("imgData") === null) {
   soloImage.src = "./images/pexels-auto-records-10292240.jpg";
 }
 
-
-// Journal entry variable declarations
-var journalForm = document.querySelector("#journal-form");
-var greatfull1 = document.querySelector("#greatfull1");
-var greatfull2 = document.querySelector("#greatfull2");
-var greatfull3 = document.querySelector("#greatfull3");
-var goalsl1 = document.querySelector("#goalsl1");
-var goalsl2 = document.querySelector("#goalsl2");
-var goalsl3 = document.querySelector("#goalsl3");
-var logMyJournal = document.querySelector("#log-my-journal");
-var myJournal = {
-  greatfull: [],
-  goals: []
-};
-
-
 if (localStorage.getItem("imgDataBanner") === null) {
   bannerImage.src = "./images/199286248_l_normal_none.png";
 }
@@ -238,8 +222,6 @@ function randomQuote() {
 
 newRandom.addEventListener('click', randomQuote);
 
-
-
 // clock widget
 
 function loadTime() {
@@ -301,100 +283,81 @@ function getLatLon(position) {
       console.log(current.name)
       let locationValue = current.name;
       let temperatureValue = current.main.temp;
-      // let conditionValue = current.weather.0.description;
+      let conditionValue = current.weather[0].description;
 
-    
+      function roundDown(params) {
+        Math.floor(temperatureValue)
+      }
 
+      roundDown();
+
+      temperatureDisplay.textContent = temperatureValue + "°C";
+      conditionDisplay.textContent = conditionValue;
       locationDisplay.textContent = locationValue;
-      temperatureDisplay.innerHTML = temperatureValue;
-      // conditionDisplay.innerHTML = conditionValue;
     })
 }
 
 
+  // journal
 
-//journal widget
-function myJournalSubmit(triggerEvent) {
-  myJournal.greatfull[0] = greatfull1.value;
-  myJournal.greatfull[1] = greatfull2.value;
-  myJournal.greatfull[2] = greatfull3.value;
-  myJournal.goals[0] = goalsl1.value;
-  myJournal.goals[1] = goalsl2.value;
-  myJournal.goals[2] = goalsl3.value;
-  storeMyJournal();
-  renderMyJournal();
-};
+  let top1 = document.getElementById('top1');
+  let top2 = document.getElementById('top2');
+  let top3 = document.getElementById('top3');
 
-journalForm.addEventListener("submit", function (event) {
-  event.preventDefault();
-  myJournalSubmit(event);
-});
+  let bottom1 = document.getElementById('bottom1');
+  let bottom2 = document.getElementById('bottom2');
+  let bottom3 = document.getElementById('bottom3');
 
-journalForm.addEventListener("keydown", function (event) {
-  if (event.code == "Enter") {
-    event.preventDefault();
-    myJournalSubmit(event);
+  let logJournal = document.getElementById('logjournal');
+  let clearJournal = document.getElementById('clearjournal');
+
+  // Function to retrieve and display saved journal entries
+  function displaySavedEntries() {
+    let savedJournal = localStorage.getItem('dailyJournal');
+
+    if (savedJournal) {
+      let journalData = JSON.parse(savedJournal);
+
+      // Populate top box inputs
+      top1.value = journalData.grateful[0] || '';
+      top2.value = journalData.grateful[1] || '';
+      top3.value = journalData.grateful[2] || '';
+
+      // Populate bottom box inputs
+      bottom1.value = journalData.goals[0] || '';
+      bottom2.value = journalData.goals[1] || '';
+      bottom3.value = journalData.goals[2] || '';
+    }
   }
-});
 
-// function initMyJournal() {
-//   var storedMyJournal = JSON.parse(localStorage.getItem("myJournal"));
-//   if (storedMyJournal !== null && (storedMyJournal.greatfull.length > 0 || storedMyJournal.goals.length > 0)) {
-//     myJournal = storedMyJournal;
-//   }
-//   renderMyJournal();
-// }
+  // Event listener for the "Log My Journal" button
+  logJournal.addEventListener('click', function () {
+    // Get user inputs
+    let journalEntry = {
+      grateful: [top1.value, top2.value, top3.value],
+      goals: [bottom1.value, bottom2.value, bottom3.value]
+    };
 
-// function storeMyJournal() {
-//   localStorage.setItem("myJournal", JSON.stringify(myJournal));
-// }
+    // Save to local storage
+    localStorage.setItem('dailyJournal', JSON.stringify(journalEntry));
 
-// function renderMyJournal() {
-//   greatfull1.value = myJournal.greatfull[0] || "";
-//   greatfull2.value = myJournal.greatfull[1] || "";
-//   greatfull3.value = myJournal.greatfull[2] || "";
-//   goalsl1.value = myJournal.goals[0] || "";
-//   goalsl2.value = myJournal.goals[1] || "";
-//   goalsl3.value = myJournal.goals[2] || "";
-// }
+    // Display saved entries
+    displaySavedEntries();
+  });
 
-// journalForm.addEventListener("submit", function (event) {
-//   event.preventDefault();
+  clearJournal.addEventListener('click', function () {
+    localStorage.removeItem('dailyJournal');
 
-//   myJournal.greatfull.push(greatfull1.value);
-//   myJournal.greatfull.push(greatfull2.value);
-//   myJournal.greatfull.push(greatfull3.value);
-//   myJournal.goals.push(goalsl1.value);
-//   myJournal.goals.push(goalsl2.value);
-//   myJournal.goals.push(goalsl3.value);
-//   storeMyJournal();
-//   renderMyJournal();
-// });
+    top1.value = '';
+    top2.value = '';
+    top3.value = '';
+    bottom1.value = '';
+    bottom2.value = '';
+    bottom3.value = '';
+  });
 
-// function myJournalSubmit(triggerEvent) {
-//     myJournal.greatfull[0] = greatfull1.value;
-//     myJournal.greatfull[1] = greatfull2.value;
-//     myJournal.greatfull[2] = greatfull3.value;
-//     myJournal.goals[0] = goalsl1.value;
-//     myJournal.goals[1] = goalsl2.value;
-//     myJournal.goals[2] = goalsl3.value;
-//     storeMyJournal();
-//     renderMyJournal();
-// };
-
-// journalForm.addEventListener("submit", function(event){
-//   event.preventDefault();
-//   myJournalSubmit(event);
-// });
-
-// journalForm.addEventListener("keydown", function(event){
-//   if(event.code == "Enter") {
-//     event.preventDefault();
-//     myJournalSubmit(event);
-//   } 
-// });
-
-// initMyJournal();
+  // Call the displaySavedEntries function when the page loads
+  window.addEventListener('load', displaySavedEntries);
 
 
 // To Do List
@@ -469,3 +432,61 @@ clearButton.addEventListener('click', function () {
 
 loadTasks();
 renderTasks();
+
+
+// financial tracker
+let nameInput = document.getElementById("nameInput");
+let valueInput = document.getElementById("valueInput");
+let transactionMessage = document.getElementById("transactionMessage");
+let transactionList = document.getElementById("transactionList");
+
+let transactions = [];
+let total = 0;
+
+// Load transactions from local storage on page load
+window.onload = function () {
+  let savedTransactions = JSON.parse(localStorage.getItem("transactions")) || [];
+  transactions = savedTransactions;
+  updateTransactionList();
+  updateTotal();
+}
+
+function addTransaction() {
+  let name = nameInput.value;
+  let value = parseInt(valueInput.value);
+    if (!name || isNaN(value) || value % 1 !== 0) {
+        return;
+    }
+     transactions.push({ name, value });
+     updateTransactionList();
+     updateTotal()
+     // Clear input fields
+     nameInput.value = "";
+     valueInput.value = ""
+ }
+
+function updateTransactionList() {
+  transactionList.innerHTML = "";
+  transactions.forEach(transaction => {
+    let listItem = document.createElement("li");
+    listItem.textContent = `${transaction.name}: $${transaction.value}`;
+    transactionList.appendChild(listItem);
+   });
+    }
+
+function updateTotal() {
+  total = transactions.reduce((acc, transaction) => acc + transaction.value, 0);
+  let totalElement = document.getElementById("total");
+  totalElement.textContent = `$${total}`;
+}
+
+function saveToLocalStorage() {
+  localStorage.setItem("transactions", JSON.stringify(transactions));
+}
+
+function clearLocalStorage() {
+  localStorage.removeItem("transactions");
+  transactions = [];
+  updateTransactionList();
+  updateTotal();
+}
