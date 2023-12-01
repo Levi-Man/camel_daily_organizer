@@ -13,8 +13,6 @@
         integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U=" crossorigin="anonymous"></script>
 </head>
 
-
-
 <body>
 
     <div id="top-banner" class="img_container has-background-black-ter">
@@ -55,7 +53,8 @@
                     <p id="temperature" class="is-size-1 is-size-1-touch has-text-weight-bold has-text-white-bis">
                     </p>
                     <p id="condition" class="has-text-white-bis"></p>
-                    <p id="location" class="has-text-white-bis"></p>
+                    <p id="location" class="has-text-white-bis mb-3"></p>
+                    <button id="new-location" class="button is-warning is-small">Refresh location</button>
                     <!-- <div class="field has-addons">
                         <div class="control">
                           <input id="citysearch" class="input" type="text" placeholder="Enter your city here...">
@@ -91,28 +90,34 @@
                                     </p>
                                     <div class="box content pt-2 has-background-grey-dark">
                                         <ol type="1">
-
-                                            <li>
-                                                <input class="input" type="text" placeholder="Text input">
-                                            </li>
-                                            <li>
-                                                <input class="input" type="text" placeholder="Text input">
-                                            </li>
-                                            <li>
-                                                <input class="input" type="text" placeholder="Text input">
-                                            </li>
-                                            <li><input type="text" id="greatfull1"></li>
-                                            <li><input type="text" id="greatfull2"></li>
-                                            <li><input type="text" id="greatfull3"></li>
+                                            <form action="submit">
+                                                <li>
+                                                    <input class="input" type="text" placeholder="enter your thoughts">
+                                                </li>
+                                                <li>
+                                                    <input class="input" type="text" placeholder="Text input">
+                                                </li>
+                                                <li>
+                                                    <input class="input" type="text" placeholder="Text input">
+                                                </li>
+                                            </form>
                                         </ol>
                                     </div>
                                     <!-- Bottom Box -->
                                     <p class="title is-6 has-text-weight-normal is-italic	">3 goals for today</p>
                                     <div class="box content pt-2 has-background-grey-dark">
                                         <ol type="1">
-                                            <li><input type="text" id="goalsl1"></li>
-                                            <li><input type="text" id="goalsl2"></li>
-                                            <li><input type="text" id="goalsl3"></li>
+                                            <form action="submit">
+                                                <li>
+                                                    <input class="input" type="text" placeholder="enter your thoughts">
+                                                </li>
+                                                <li>
+                                                    <input class="input" type="text" placeholder="Text input">
+                                                </li>
+                                                <li>
+                                                    <input class="input" type="text" placeholder="Text input">
+                                                </li>
+                                            </form>
                                         </ol>
                                     </div>
                                 </div>
@@ -174,57 +179,8 @@
                 </article>
             </div>
         </div>
-        <!-- row 3 -->
-        <div class="tile is-ancestor is-vertical">
-            <div class="tile is-parent">
-                <div class="tile is-child">
-                    <figure class="image is-480x480">
-                        <img src="./images/pexels-auto-records-10292240.jpg">
-                    </figure>
-                </div>
-                <div class="tile is-child">
-                    <figure class="image is-480x480">
-                        <img src="./images/pexels-auto-records-10292240.jpg">
-                    </figure>
-                </div>
-                <div class="tile is-child">
-                    <figure class="image is-480x480">
-                        <img src="./images/pexels-auto-records-10292240.jpg">
-                    </figure>
-                </div>
-                <div class="tile is-child">
-                    <figure class="image is-480x480">
-                        <img src="./images/pexels-auto-records-10292240.jpg">
-                    </figure>
-                </div>
-            </div>
-            <div class="tile is-parent">
-                <div class="tile is-child">
-                    <figure class="image has-ratio is-256x256">
-                        <img src="./images/pexels-auto-records-10292240.jpg">
-                    </figure>
-                </div>
-                <div class="tile is-child">
-                    <figure class="image has-ratio is-256x256">
-                        <img src="./images/pexels-auto-records-10292240.jpg">
-                    </figure>
-                </div>
-                <div class="tile is-child">
-                    <figure class="image has-ratio is-256x256">
-                        <img src="./images/pexels-auto-records-10292240.jpg">
-                    </figure>
-                </div>
-                <div class="tile is-child">
-                    <figure class="image has-ratio is-256x256">
-                        <img src="./images/pexels-auto-records-10292240.jpg">
-                    </figure>
-                </div>
-            </div>
-        </div>
-
-
+        
         <!-- Modal -->
-
 
         <!-- Modal for solo image -->
         <div id="pexel-modal" class="modal">
