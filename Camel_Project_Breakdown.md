@@ -52,7 +52,7 @@ THEN I will be able to hit save and have everything saved to local storage
 
 Below is a screenshot of a simple wireframe for us to follow.
 
-![Wireframe](https://github.com/Levi-Man/camel_daily_organizer/blob/main/Camel%20Wireframe.pdf)
+![Wireframe](https://github.com/Levi-Man/camel_daily_organizer/blob/main/images/Camel%20Wireframe.pdf)
 
 ## API's to be used
 
