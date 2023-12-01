@@ -24,13 +24,13 @@
 
     <main class="section has-background-black-ter">
         <div class=" mb-6">
-            <div class="title is-1 has-text-white-bis">🍃 My Personal Home</div>
-            <!-- <div class="button is-primary">Edit Page</div> -->
+            <div class="title mb-6 is-1 has-text-white-bis">🍃 My Personal Home</div>
+            <div class="subtitle is-6 has-text-white-bis">Welcome to Camel, your daily organizer and journaling tool.</div>
         </div>
         <!-- row 1 -->
         <div class="tile is-ancestor ">
             <!-- quote generator -->
-            <div class="tile is-parent is-6">
+            <div class="tile is-parent is-6 mobile">
                 <div class="tile is-child notification is-success has-background-grey-darker">
                     <p id="quote-text" class="title is-5 has-text-white-bis">"If you sprinkle when you tinkle, be sweet and wipe the seat."</p>
                     <p id="author-name" class="subtitle is-6 has-text-white-bis">- Wise Man</p>
@@ -41,7 +41,7 @@
             <div class="tile is-parent is-3">
                 <div
                     class="tile is-child notification is-success has-background-grey-darker has-text-centered is-align-content-center">
-                    <p id="time" class="is-size-1 is-size-1-touch has-text-weight-bold has-text-white-bis "></p>
+                    <p id="time" class="is-size-1 is-size-2-tablet has-text-weight-bold has-text-white-bis "></p>
                     <p id="day" class="has-text-white-bis"></p>
                     <p id="monthly" class="has-text-white-bis"></p>
                 </div>
@@ -50,21 +50,11 @@
             <div class="tile is-parent is-3">
                 <div
                     class="tile is-child notification is-success  has-background-grey-darker has-text-centered is-align-content-center">
-                    <p id="temperature" class="is-size-1 is-size-1-touch has-text-weight-bold has-text-white-bis">
+                    <p id="temperature" class="is-size-1 is-size-2-tablet has-text-weight-bold has-text-white-bis">
                     </p>
                     <p id="condition" class="has-text-white-bis"></p>
                     <p id="location" class="has-text-white-bis mb-3"></p>
                     <button id="new-location" class="button is-warning is-small">Refresh location</button>
-                    <!-- <div class="field has-addons">
-                        <div class="control">
-                          <input id="citysearch" class="input" type="text" placeholder="Enter your city here...">
-                        </div>
-                        <div class="control">
-                          <a class="button is-warning">
-                            Update
-                          </a>
-                        </div>
-                      </div> -->
 
                 </div>
             </div>
@@ -74,10 +64,8 @@
 
             <!-- journal -->
             <div class="tile is-parent">
-                <!-- <form id="journal-form"> -->
-                    <article class="tile is-child has-background-grey-darker notification is-success">
-                <form id="journal-form">
-                    <article class="tile is-child has-background-grey-darker notification is-primary is-success">
+                <article class="tile is-child has-background-grey-darker notification is-success">
+                    <article class="tile is-child has-background-grey-darker notification is-primary is-success p-0 ">
                         <div class="content">
                             <!-- titles -->
                             <p class="title">Daily Journal</p>
@@ -86,46 +74,44 @@
                             <div class="content">
                                 <div>
                                     <!-- Top box -->
-                                    <p class="title is-6 has-text-weight-normal is-italic	">3 things I am greatful for
+                                    <p class="title is-6 has-text-weight-normal is-italic">3 things I am greatful for
                                     </p>
-                                    <div class="box content pt-2 has-background-grey-dark">
-                                        <ol type="1">
-                                            <form action="submit">
+                                    <div class="box content pt-2 pl-0 has-background-grey-dark">
+                                        <ol id="inputlist1">
                                                 <li>
-                                                    <input class="input" type="text" placeholder="enter your thoughts">
+                                                    <input id="top1" class="input" type="text" placeholder="Enter your thoughts...">
                                                 </li>
                                                 <li>
-                                                    <input class="input" type="text" placeholder="Text input">
+                                                    <input id="top2" class="input" type="text" placeholder="Enter your thoughts...">
                                                 </li>
                                                 <li>
-                                                    <input class="input" type="text" placeholder="Text input">
+                                                    <input id="top3" class="input" type="text" placeholder="Enter your thoughts...">
                                                 </li>
-                                            </form>
                                         </ol>
                                     </div>
                                     <!-- Bottom Box -->
-                                    <p class="title is-6 has-text-weight-normal is-italic	">3 goals for today</p>
-                                    <div class="box content pt-2 has-background-grey-dark">
-                                        <ol type="1">
-                                            <form action="submit">
+                                    <p class="title is-6 has-text-weight-normal is-italic">3 goals for today</p>
+                                    <div class="box content pt-2 pl-0 has-background-grey-dark">
+                                        <ol id="inputlist2" type="1">
+                                            <!-- <form action="submit"> -->
                                                 <li>
-                                                    <input class="input" type="text" placeholder="enter your thoughts">
+                                                    <input id="bottom1" class="input" type="text" placeholder="Enter your thoughts...">
                                                 </li>
                                                 <li>
-                                                    <input class="input" type="text" placeholder="Text input">
+                                                    <input id="bottom2" class="input" type="text" placeholder="Enter your thoughts...">
                                                 </li>
                                                 <li>
-                                                    <input class="input" type="text" placeholder="Text input">
+                                                    <input id="bottom3" class="input" type="text" placeholder="Enter your thoughts...">
                                                 </li>
-                                            </form>
                                         </ol>
                                     </div>
                                 </div>
                             </div>
-                            <button class="button is-warning is-outlined" id="log-my-journal">Log My Journal</button>
+                            <button class="button is-warning mr-2 mb-3" id="logjournal">Log My Journal</button>
+                            <button class="button is-warning is-outlined" id="clearjournal">Clear Entries</button>
                         </div>
                     </article>
-                <!-- </form> -->
+                </article>
             </div>
 
             <!-- solo image tile -->
@@ -134,10 +120,7 @@
                     <p class="title">Next Major Purchase</p>
                     <p class="subtitle">With with the help of a software dev salary...</p>
                     <div class="">
-
                         <img id="solo-image" src="./images/pexels-auto-records-10292240.jpg">
-
-                        </figure>
                     </div>
                     <button id="change-image" class="js-modal-trigger button is-warning mt-3" data-target="pexel-modal">
                         Change Image
@@ -161,12 +144,10 @@
                         </div>
                     </div>
                     <div class="control my-4">
-
                         <ul id="task_list">
-                            <li class="is-clickable notification is-warning mb-3 p-2">Practice more Javascript<button
-                                    id="clear_task" class="delete"></button></li>
+                            <!-- <li class="is-clickable notification is-warning mb-3 p-2">Practice more Javascript<button
+                                    id="clear_task" class="delete"></button></li> -->
                         </ul>
-
                         <ul id="task_list"></ul>
                     </div>
                     <div class="field is-grouped is-grouped-centered">
@@ -179,7 +160,58 @@
                 </article>
             </div>
         </div>
-        
+      
+        <!-- financial tracker -->
+        <div class="container mt-6">
+
+            <h1 class="title mb-6 is-1 has-text-white-bis">📊 Finance Tracker</h1>
+    
+            <div class="tile is-ancestor">
+                <!-- Input -->
+                <div class="tile is-parent is-6">
+                    <article class="tile is-child box has-background-grey-darker">
+                        <div class="field">
+                            <label class="label has-text-white-bis">Name:</label>
+                            <div class="control">
+                                <input class="input" type="text" id="nameInput" placeholder="Enter name">
+                            </div>
+                        </div>
+    
+                        <div class="field">
+                            <label class="label has-text-white-bis"">Value:</label>
+                            <div class="control">
+                                <input class="input" type="text" id="valueInput" placeholder="Enter whole number">
+                            </div>
+                        </div>
+    
+                        <div class="field is-grouped">
+                            <div class="control">
+                                <button class="button is-warning" onclick="addTransaction()">Add Transaction</button>
+                            </div>
+                            <div class="control">
+                                <button class="button is-warning" onclick="saveToLocalStorage()">Save Tracker</button>
+                            </div>
+                            <div class="control">
+                                <button class="button is-danger" onclick="clearLocalStorage()">Clear Tracker</button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+    
+                <!-- Iracker -->
+                <div class="tile is-parent">
+                    <article class="tile is-child box has-background-grey-darker">
+                        <h3 class="subtitle has-text-white-bis">Transactions:</h3>
+
+                        <ul id="transactionList" class="mb-4 has-text-white-bis"></ul>
+
+                        <h3 class="subtitle has-text-white-bis">Total:</h3>
+                        <p id="total" class="title is-4 has-text-white-bis">$0</p>
+                    </article>
+                </div>
+            </div>
+        </div>        
+
         <!-- Modal -->
 
         <!-- Modal for solo image -->
